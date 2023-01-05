@@ -12,16 +12,12 @@ const Navbar = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to="/login">Login</Link></li>
                         <li><Link to="/register">Register</Link></li>
-<<<<<<< HEAD
                         <li><Link to="/infoForm">Teachers Info</Link></li>
-=======
-                        <li><Link to="/credits">Credits</Link></li>
->>>>>>> 0fbf9acf63d5ebada1f9e5c492119d92ae0f2d1e
                     </ul>
                 </div>
             </div>
             <div className="navbar-center">
-                <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
             </div>
             <div className="navbar-end">
                 <button className="btn btn-ghost btn-circle">
