@@ -7,8 +7,7 @@ const LoginForm = () => {
 
     // handle login with email & password
     const handleLogin = data => {
-        console.log('clicked')
-        
+        console.log('clicked');
     };
     return (
         <section className='container mx-auto my-12 bg-gradient-to-r from-slate-300 to-slate-400'>
