@@ -1,12 +1,12 @@
 import React from 'react';
-import Principle from '../dashboard/Principle/Principal';
-import ErrorPage from '../pages/Error/ErrorPage';
+import { Outlet } from 'react-router-dom';
+import Navbar from '../pages/Navbar/Navber';
 
 const Main = () => {
     return (
         <div>
-            <Principle/>
-            <ErrorPage/>
+            <Navbar />
+            <Outlet />
         </div>
     );
 };

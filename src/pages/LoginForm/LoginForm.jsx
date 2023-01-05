@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     // handle login with email & password
     const handleLogin = data => {
@@ -13,7 +13,7 @@ const LoginForm = () => {
         console.log(email, password)
     };
     return (
-        <section className='container mx-auto my-12'>
+        <section className='container mx-auto my-12 bg-gradient-to-r from-slate-300 to-slate-400'>
             <div className='py-12 justify-center flex items-center'>
                 <div className='bg-slate-100 p-5 border rounded-xl w-9/12 md:w-1/2 lg:w-4/12 mx-auto'>
                     <form onSubmit={handleSubmit(handleLogin)} className='grid grid-cols-1 gap-1'>
@@ -23,14 +23,14 @@ const LoginForm = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" {...register("email", { required: "Email Address is required"})} placeholder="email address" className="input input-bordered" />
-                            {errors.email && <p className='text-red-600' role="alert">{errors.email?.message}</p>} 
+                            <input type="email" {...register("email", { required: "Email Address is required" })} placeholder="email address" className="input input-bordered" />
+                            {errors.email && <p className='text-red-600' role="alert">{errors.email?.message}</p>}
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" {...register("password", { required: "Password is required"})} placeholder="password" className="input input-bordered" />
+                            <input type="password" {...register("password", { required: "Password is required" })} placeholder="password" className="input input-bordered" />
                             {errors.password && <p role="alert" className='text-red-600'>{errors.password?.message}</p>}
                         </div>
                         <input className='btn btn-primary text-white font-bold mt-4' type="submit" value="Login" />
