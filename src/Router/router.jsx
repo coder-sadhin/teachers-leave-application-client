@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layout/Main';
-import Credits from '../pages/Credits/Credits';
+import InfoForm from '../pages/InfoForm/InfoForm';
 import LoginForm from '../pages/LoginForm/LoginForm';
 import SingUpForm from '../pages/SingUpForm/SignUpForm';
 
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
                 element: <SingUpForm />
             },
             {
-                path: '/credits',
-                element: <Credits></Credits>
+                path: '/infoForm',
+                element: <InfoForm />
             }
         ]
 
