@@ -53,7 +53,7 @@ const InfoForm = () => {
                         <h3 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>Rajshahi Polytechnic Institute, Rajshahi </h3>
                     </div>
                     <form onSubmit={handleSubmit(handleSave)} className="card w-full">
-                        <h3 className='text-xl md:text-2xl lg:text-3xl font-semibold text-center mb-6'>Teachers & Servant Information</h3>
+                        <h3 className='text-xl md:text-2xl lg:text-3xl font-semibold text-center mb-6'>Teachers & Employee Information</h3>
                     <div className="divider w-11/12 mx-auto"></div>
                         <div className="card-body grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="form-control">
@@ -90,7 +90,7 @@ const InfoForm = () => {
                                 <label className="label">
                                     <span className="label-text">Shift</span>
                                 </label>
-                                <select name='shift' {...register("shift", { required: "Department is required"})} className="bg-gray-100 select select-bordered w-full">
+                                <select name='shift' {...register("shift", { required: "Shift is required"})} className="bg-gray-100 select select-bordered w-full">
                                     <option>1st</option>
                                     <option>2nd</option>
                                 </select>
@@ -193,7 +193,7 @@ const InfoForm = () => {
                                 <input type="text" {...register("address", { required: "Address is required"})} placeholder="Your permanent address" className="bg-gray-100 input input-bordered" />
                                 {errors.address && <p role="alert" className='text-red-600'>{errors.address?.message}</p>}
                             </div>
-                            <div className="form-control mt-6">
+                            <div className="form-control mt-9">
                                 <button type='submit' className="btn btn-primary">Submit</button>
                             </div>
                         </div>
