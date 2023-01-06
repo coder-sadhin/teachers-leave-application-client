@@ -19,7 +19,7 @@ const InfoForm = () => {
         const address = data.address;
 
 
-        const information = {
+        const details = {
             name,
             idNo,
             department,
@@ -43,17 +43,18 @@ const InfoForm = () => {
         //     }
         // }
 
-        console.log(information)
+        console.log(details)
     }
     return (
-        <div className='container mx-auto my-10'>
+        <div className='container mx-auto my-12'>
             <div className=" bg-base-200 py-14">
                 <div className="hero-content flex-col">
                     <div className='text-center font-semibold'>
-                        <h3 className='text-4xl font-semibold'>Rajshahi Polytechnic Institute, Rajshahi </h3>
+                        <h3 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>Rajshahi Polytechnic Institute, Rajshahi </h3>
                     </div>
                     <form onSubmit={handleSubmit(handleSave)} className="card w-full">
-                        <h3 className='text-3xl font-semibold text-center mb-6'>Teachers & Servant Information</h3>
+                        <h3 className='text-xl md:text-2xl lg:text-3xl font-semibold text-center mb-6'>Teachers & Servant Information</h3>
+                    <div className="divider w-11/12 mx-auto"></div>
                         <div className="card-body grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="form-control">
                                 <label className="label">
@@ -163,25 +164,25 @@ const InfoForm = () => {
                                         <label htmlFor='islam' className="label">
                                             Islam
                                         </label>
-                                        <input onClick={() => setReligion('islam')} id='islam' type="radio" name='sex' {...register("male")} className="bg-gray-100 border-none " />
+                                        <input onClick={() => setReligion('islam')} id='islam' type="radio" name='religion' {...register("male")} className="bg-gray-100 border-none " />
                                     </p>
                                     <p className='flex'>
                                         <label htmlFor='hindu' className="label">
                                             Hindu
                                         </label>
-                                        <input onClick={() => setReligion('hindu')} id='hindu' type="radio" name='sex' {...register("male")} className="bg-gray-100 border-none " />
+                                        <input onClick={() => setReligion('hindu')} id='hindu' type="radio" name='religion' {...register("male")} className="bg-gray-100 border-none " />
                                     </p>
                                     <p className='flex'>
                                         <label htmlFor='khristan' className="label">
                                             Khristan
                                         </label>
-                                        <input onClick={() => setReligion('khristan')} id='others' type="radio" name='sex' {...register("male")} className="bg-gray-100 border-none " />
+                                        <input onClick={() => setReligion('khristan')} id='others' type="radio" name='religion' {...register("male")} className="bg-gray-100 border-none " />
                                     </p>
                                     <p className='flex'>
                                         <label htmlFor='others' className="label">
                                             Others
                                         </label>
-                                        <input onClick={() => setReligion('others')} id='others' type="radio" name='sex' {...register("male")} className="bg-gray-100 border-none " />
+                                        <input onClick={() => setReligion('others')} id='others' type="radio" name='religion' {...register("male")} className="bg-gray-100 border-none " />
                                     </p>
                                 </div>
                             </div>
