@@ -3,6 +3,7 @@ import Main from '../Layout/Main';
 import InfoForm from '../pages/InfoForm/InfoForm';
 import LoginForm from '../pages/LoginForm/LoginForm';
 import SingUpForm from '../pages/SingUpForm/SignUpForm';
+import Verification from '../pages/SingUpForm/Verification';
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: '/infoForm',
                 element: <InfoForm />
+            },
+            {
+                path: '/confirm',
+                element: <Verification />
             }
         ]
 
