@@ -1,2 +1,2 @@
-const serverApi = 'https://teachers-leave-application-server.vercel.app';
+const serverApi = 'http://localhost:5000';
 export default serverApi;
