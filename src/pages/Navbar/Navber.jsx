@@ -14,6 +14,7 @@ const Navbar = () => {
                         <li><Link to="/register">Register</Link></li>
                         <li><Link to="/infoForm">Teachers Info</Link></li>
                         <li><Link to="/confirm">Confirm</Link></li>
+                        <li><Link to="/leavesForm">Leaves Form</Link></li>
                     </ul>
                 </div>
             </div>
