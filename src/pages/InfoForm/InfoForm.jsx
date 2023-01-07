@@ -5,13 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../../Components/Button/PrimaryButton';
 import Spinner from '../../Components/Spinner/Spinner';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
-import serverApi from '../../ServerApi/ServerApi';
+import { serverApi } from '../../ServerApi/ServerApi';
+
 
 const InfoForm = ({ signUpInfo }) => {
     const [loading, setLoading] = useState(false);
     const { name, email, password, img } = signUpInfo;
     const [signUpError, setSingUpError] = useState('');
-    const { createUser, upDateUser, signOut } = useContext(AuthContext)
+    const { createUser, upDateUser, LogOut } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [sex, setSex] = useState('');
     const [religion, setReligion] = useState('');
@@ -87,11 +88,14 @@ const InfoForm = ({ signUpInfo }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                toast.success('Welcome To RPI')
-                setLoading(false)
-                signOut()
-                navigate('/confirm')
+                if (data.acknowledged === true) {
+                    toast.success('Welcome To RPI')
+                    setLoading(false)
+                    LogOut()
+                    navigate('/confirm')
+                }
             })
+            .catch(err => console.log(err))
     }
 
     return (
