@@ -1,18 +1,74 @@
 import React from 'react';
+import Credit from './Credit';
 
 const Credits = () => {
+    const credits = [
+        {
+            id: 1,
+            name: 'Nasim Billha',
+            title: 'Full Stack Web Developer',
+            image: 'https://molina.imigrasi.go.id/assets/images/icon-profile.png',
+            info: 'An engineer or developer who works on both the front end (client-side) and the back end (server-side) of a website or application is called a full-stack developer. They may handle projects involving databases, APIs, or designing user-facing websites, as well as interacting with clients during development.'
+        },
+        {
+            id: 2,
+            name: 'Nasim Billha',
+            title: 'Full Stack Web Developer',
+            image: 'https://molina.imigrasi.go.id/assets/images/icon-profile.png',
+            info: 'An engineer or developer who works on both the front end (client-side) and the back end (server-side) of a website or application is called a full-stack developer. They may handle projects involving databases, APIs, or designing user-facing websites, as well as interacting with clients during development.'
+        },
+        {
+            id: 3,
+            name: 'Nasim Billha',
+            title: 'Full Stack Web Developer',
+            image: 'https://molina.imigrasi.go.id/assets/images/icon-profile.png',
+            info: 'An engineer or developer who works on both the front end (client-side) and the back end (server-side) of a website or application is called a full-stack developer. They may handle projects involving databases, APIs, or designing user-facing websites, as well as interacting with clients during development.'
+        },
+        {
+            id: 4,
+            name: 'Nasim Billha',
+            title: 'Full Stack Web Developer',
+            image: 'https://molina.imigrasi.go.id/assets/images/icon-profile.png',
+            info: 'An engineer or developer who works on both the front end (client-side) and the back end (server-side) of a website or application is called a full-stack developer. They may handle projects involving databases, APIs, or designing user-facing websites, as well as interacting with clients during development.'
+        },
+        {
+            id: 5,
+            name: 'Nasim Billha',
+            title: 'Full Stack Web Developer',
+            image: 'https://molina.imigrasi.go.id/assets/images/icon-profile.png',
+            info: 'An engineer or developer who works on both the front end (client-side) and the back end (server-side) of a website or application is called a full-stack developer. They may handle projects involving databases, APIs, or designing user-facing websites, as well as interacting with clients during development.'
+        },
+        {
+            id: 6,
+            name: 'Nasim Billha',
+            title: 'Full Stack Web Developer',
+            image: 'https://molina.imigrasi.go.id/assets/images/icon-profile.png',
+            info: 'An engineer or developer who works on both the front end (client-side) and the back end (server-side) of a website or application is called a full-stack developer. They may handle projects involving databases, APIs, or designing user-facing websites, as well as interacting with clients during development.'
+        },
+        {
+            id: 7,
+            name: 'Nasim Billha',
+            title: 'Full Stack Web Developer',
+            image: 'https://molina.imigrasi.go.id/assets/images/icon-profile.png',
+            info: 'An engineer or developer who works on both the front end (client-side) and the back end (server-side) of a website or application is called a full-stack developer. They may handle projects involving databases, APIs, or designing user-facing websites, as well as interacting with clients during development.'
+        },
+        {
+            id: 8,
+            name: 'Nasim Billha',
+            title: 'Full Stack Web Developer',
+            image: 'https://molina.imigrasi.go.id/assets/images/icon-profile.png',
+            info: 'An engineer or developer who works on both the front end (client-side) and the back end (server-side) of a website or application is called a full-stack developer. They may handle projects involving databases, APIs, or designing user-facing websites, as well as interacting with clients during development.'
+        },
+    ]
     return (
-        <div className="card w-96 ">
-            <div className="bg-gray-400 mx-8 py-2">
-                <img className='rounded-lg mt-[-50px] px-8' src="https://molina.imigrasi.go.id/assets/images/icon-profile.png" alt="Shoes" />
-                <h2 className=" text-2xl font-bold px-8">Nasim Billha</h2>
-            </div>
-            <div className="bg-gray-200 px-8 mx-8 pt-3">
-                <p className='text-1xl font-semibold '>Full Stack Web Developer</p>
-                <p className='mt-4'>An engineer or developer who works on both the front end (client-side) and the back end (server-side) of a website or application is called a full-stack developer. They may handle projects involving databases, APIs, or designing user-facing websites, as well as interacting with clients during development.</p>
-                <div className="card-actions justify-center mt-4">
-                    <button className="btn btn-primary">See Detail</button>
-                </div>
+        <div className='container mx-auto'>
+            <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-gray-200  py-16'>
+                {
+                    credits.map(credit => <Credit
+                        key={credit.id}
+                        credit={credit}
+                    ></Credit>)
+                }
             </div>
         </div>
     );
