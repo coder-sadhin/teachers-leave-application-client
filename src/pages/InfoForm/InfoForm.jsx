@@ -12,7 +12,7 @@ const InfoForm = ({ signUpInfo }) => {
     const [loading, setLoading] = useState(false);
     const { name, email, password, img } = signUpInfo;
     const [signUpError, setSingUpError] = useState('');
-    const { createUser, upDateUser, signOut } = useContext(AuthContext)
+    const { createUser, upDateUser, LogOut } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [sex, setSex] = useState('');
     const [religion, setReligion] = useState('');
@@ -91,7 +91,7 @@ const InfoForm = ({ signUpInfo }) => {
                 if (data.acknowledged === true) {
                     toast.success('Welcome To RPI')
                     setLoading(false)
-                    signOut()
+                    LogOut()
                     navigate('/confirm')
                 }
             })
