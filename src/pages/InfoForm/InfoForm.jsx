@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../../Components/Button/PrimaryButton';
 import Spinner from '../../Components/Spinner/Spinner';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
-import serverApi from '../../ServerApi/ServerApi';
+import { serverApi } from '../../ServerApi/ServerApi';
+
 
 const InfoForm = ({ signUpInfo }) => {
     const [loading, setLoading] = useState(false);
@@ -87,11 +88,14 @@ const InfoForm = ({ signUpInfo }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                toast.success('Welcome To RPI')
-                setLoading(false)
-                signOut()
-                navigate('/confirm')
+                if (data.acknowledged === true) {
+                    toast.success('Welcome To RPI')
+                    setLoading(false)
+                    signOut()
+                    navigate('/confirm')
+                }
             })
+            .catch(err => console.log(err))
     }
 
     return (
