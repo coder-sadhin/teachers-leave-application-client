@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
@@ -10,7 +10,7 @@ const LeavesForm = () => {
     const {register, handleSubmit, formState: {errors}} = useForm();
 
 
-    const {data: userInfo = [], isLoading, refetch} = useQuery({
+    const {data: userInfo = [], isLoading} = useQuery({
         queryKey: ['userInfo'],
         queryFn: async() => {
             const res = await fetch(`https://teachers-leave-application-server.vercel.app/userInfo?email=${user?.email}`);
@@ -23,12 +23,13 @@ const LeavesForm = () => {
     if(isLoading || loading){
         return <Spinner />
     }
-    console.log(userInfo)
+    console.log(userInfo);
 
 
     const handleSave = data => {
 
         const department = data.department;
+        const name = data.name;
         const shift = data.shift;
         const leaves = data.leaves;
         const title = data.title;
@@ -38,7 +39,8 @@ const LeavesForm = () => {
         const description = data.description;
 
 
-        const details = {
+        const leavesInfo = {
+            name,
             department,
             shift,
             leaves,
@@ -49,7 +51,7 @@ const LeavesForm = () => {
             description
         }
     
-        console.log(details)
+        console.log(leavesInfo);
     }
     return (
         <div className='container mx-auto'>
@@ -59,39 +61,31 @@ const LeavesForm = () => {
                         <div className="card-body grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text">Full name</span>
+                                </label>
+                                <input defaultValue={userInfo?.details?.name} readOnly type="name" {...register("name", { required: "name is required"})} className="bg-gray-100 input input-bordered" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
                                     <span className="label-text">Department</span>
                                 </label>
-                                <select name='department' {...register("department", { required: "Department is required"})} className="bg-gray-100 select select-bordered w-full">
-                                    <option>computer</option>
-                                    <option>civil</option>
-                                    <option>electrical</option>
-                                    <option>electronics</option>
-                                    <option>electromedical</option>
-                                    <option>mechanical</option>
-                                    <option>mechatronics</option>
-                                    <option>power</option>
-                                </select>
-                                {errors.department && <p role="alert" className='text-red-600'>{errors.department?.message}</p>}
+                                <input defaultValue={userInfo?.department} readOnly type="department" {...register("department", { required: "department is required"})} className="bg-gray-100 input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Shift</span>
                                 </label>
-                                <select name='shift' {...register("shift", { required: "Shift is required"})} className="bg-gray-100 select select-bordered w-full">
-                                    <option>1st</option>
-                                    <option>2nd</option>
-                                </select>
-                                {errors.shift && <p role="alert" className='text-red-600'>{errors.shift?.message}</p>}
+                                <input defaultValue={userInfo?.shift} readOnly type="shift" {...register("shift", { required: "shift is required"})} className="bg-gray-100 input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Leaves category</span>
                                 </label>
                                 <select name='leaves' {...register("leaves", { required: "leaves is required"})} className="bg-gray-100 select select-bordered w-full">
-                                    <option>Casual Leave (Total Leaves 8) (Deu Leaves 5) (Spend Leaves 3)</option>
-                                    <option>Sich Leave (Total Leaves 12) (Deu Leaves 4) (Spend Leaves 8)</option>
-                                    <option>Festival Holiday (Total Leaves 6) (Deu Leaves 4) (Spend Leaves 2)</option>
-                                    <option>Weekly Holiday (Total Leaves 8) (Deu Leaves 5) (Spend Leaves 3)</option>
+                                    <option>Casual Leave</option>
+                                    <option>Sich Leave</option>
+                                    <option>Festival Holiday</option>
+                                    <option>Weekly Holiday</option>
                                 </select>
                                 {errors.leaves && <p role="alert" className='text-red-600'>{errors.leaves?.message}</p>}
                             </div>
@@ -99,13 +93,7 @@ const LeavesForm = () => {
                                 <label className="label">
                                     <span className="label-text">Title</span>
                                 </label>
-                                <select name='title' {...register("title", { required: "Title is required"})} className="bg-gray-100 select select-bordered w-full">
-                                    <option>Chief Instructor</option>
-                                    <option>Instructor</option>
-                                    <option>Sub Instructor</option>
-                                    <option>Servant</option>
-                                </select>
-                                {errors.title && <p role="alert" className='text-red-600'>{errors.title?.message}</p>}
+                                <input defaultValue={userInfo?.title} readOnly type="title" {...register("title", { required: "title is required"})} className="bg-gray-100 input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
