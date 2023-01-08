@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layout/Main';
+import Credits from '../pages/Credits/Credits';
 import InfoForm from '../pages/InfoForm/InfoForm';
 import LeavesForm from '../pages/LeavesForm/LeavesForm';
 import LoginForm from '../pages/LoginForm/LoginForm';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: '/leavesForm',
                 element: <LeavesForm />
+            },
+            {
+                path: '/credits',
+                element: <Credits></Credits>
             },
         ]
 
