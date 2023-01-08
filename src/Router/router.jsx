@@ -37,6 +37,19 @@ const router = createBrowserRouter([
                 path: '/leavesForm',
                 element: <LeavesForm />
             },
+            {
+                path: '/credits',
+                element: <Credits />
+            },
+            {
+                path: '/leaves',
+                element: <LeavesMain />,
+                children: [
+                    {
+                        
+                    }
+                ]
+            },
         ]
 
     },
