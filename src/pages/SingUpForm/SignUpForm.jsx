@@ -44,9 +44,9 @@ const SingUpForm = () => {
             })
     };
     return (
-        <div>
+        <div className='container mx-auto my-12'>
             {
-                formNum === 0 && <section className='container mx-auto my-12'>
+                formNum === 0 && <section>
                     <div className='justify-center flex items-center'>
                         <div className='bg-base-200 p-5 border rounded-xl w-9/12 md:w-1/2 lg:w-5/12 mx-auto'>
                             <form onSubmit={handleSubmit(handleSignUP)} className='grid grid-cols-1 py-8 gap-1'>
