@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LeavesMain from '../Layout/LeavesMain/LeavesMain';
 import Main from '../Layout/Main';
 import Credits from '../pages/Credits/Credits';
+import ErrorPage from '../pages/Error/ErrorPage';
 import InfoForm from '../pages/InfoForm/InfoForm';
 import LeavesForm from '../pages/LeavesForm/LeavesForm';
 import LoginForm from '../pages/LoginForm/LoginForm';
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
@@ -40,19 +42,21 @@ const router = createBrowserRouter([
             {
                 path: '/credits',
                 element: <Credits />
-            },
-            {
-                path: '/leaves',
-                element: <LeavesMain />,
-                children: [
-                    {
-                        
-                    }
-                ]
-            },
+            }
         ]
 
     },
+    {
+        path: '/leaves',
+        element: <LeavesMain />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: '/leaves/leaveFrom',
+                element: <LeavesForm />
+            }
+        ]
+    }
 ])
 
 export default router;
