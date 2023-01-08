@@ -1,8 +1,30 @@
-import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
+import Spinner from '../../Components/Spinner/Spinner'
 
 const LeavesForm = () => {
+    const {user, loading} = useContext(AuthContext);
+    console.log(user);
     const {register, handleSubmit, formState: {errors}} = useForm();
+
+
+    const {data: userInfo = [], isLoading, refetch} = useQuery({
+        queryKey: ['userInfo'],
+        queryFn: async() => {
+            const res = await fetch(`https://teachers-leave-application-server.vercel.app/userInfo?email=${user?.email}`);
+            const data = await res.json();
+            return data;
+        }
+    });
+
+
+    if(isLoading || loading){
+        return <Spinner />
+    }
+    console.log(userInfo)
+
 
     const handleSave = data => {
 
@@ -34,8 +56,6 @@ const LeavesForm = () => {
             <div className=" bg-base-200 py-16">
                 <div className="hero-content flex-col">
                     <form onSubmit={handleSubmit(handleSave)} className="card w-full">
-                        <h3 className='w-11/12 mx-auto text-xl md:text-2xl lg:text-3xl font-semibold text-start mb-6'>You have <span className='font-bold'>3 leaves</span> left this month</h3>
-                        <div className="divider w-11/12 mx-auto"></div>
                         <div className="card-body grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="form-control">
                                 <label className="label">
