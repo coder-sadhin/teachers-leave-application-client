@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Navbar from '../../pages/Navbar/Navber';
 import './LeavesMain.css';
@@ -7,9 +7,9 @@ import './LeavesMain.css';
 const LeavesMain = () => {
     const {user} = useContext(AuthContext);
     return (
-        <section>
+        <section className='bg-base-200'>
             <Navbar />
-            <div className='bg-base-200 container mx-auto py-12'>
+            <div className='container mx-auto py-12'>
                 <div className='text-center lg:flex lg:justify-between lg:items-center w-11/12 mx-auto'>
                     <h3 className='text-xl md:text-2xl lg:text-3xl font-semibold lg:text-start'>You have <span className='font-bold'>3 leaves</span> left this month</h3>
                     <div className='lg:flex lg:items-center justify-center mt-4 lg:mt-0'>

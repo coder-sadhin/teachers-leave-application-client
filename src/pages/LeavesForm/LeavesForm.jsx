@@ -55,9 +55,22 @@ const LeavesForm = () => {
     }
     return (
         <div className='container mx-auto'>
-            <div className=" bg-base-200 py-16">
+            <div className="bg-slate-300 py-8 rounded-lg">
                 <div className="hero-content flex-col">
                     <form onSubmit={handleSubmit(handleSave)} className="card w-full">
+                        <div className='w-11/12 mx-auto'>
+                            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+                                <div className='bg-gray-500 p-3 shadow-2xl rounded-lg text-center'>
+                                    <h1 className='text-white text-2xl'>Total Leaves <br /> <span className='text-3xl font-bold'>12</span></h1>
+                                </div>
+                                <div className='bg-primary p-3 shadow-2xl rounded-lg text-center'>
+                                    <h1 className='text-white text-2xl'>Due Leave(s) <br /> <span className='text-3xl font-bold'>7</span></h1>
+                                </div>
+                                <div className='bg-gray-500 p-3 shadow-2xl rounded-lg text-center'>
+                                    <h1 className='text-white text-2xl'>Spend Leave(s) <br /> <span className='text-3xl font-bold'>5</span></h1>
+                                </div>
+                            </div>
+                        </div>
                         <div className="card-body grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="form-control">
                                 <label className="label">
