@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Navbar from '../../pages/Navbar/Navber';
+import './LeavesMain.css';
 
 const LeavesMain = () => {
     const {user} = useContext(AuthContext);
@@ -16,11 +17,11 @@ const LeavesMain = () => {
                         <h1 className='text-xl lg:text-2xl font-semibold'>{user?.displayName}</h1>
                     </div>
                 </div>
-                <div className='pt-8'>
+                <div className='pt-8 nav leaves-menu'>
                     <ul className='flex justify-around'>
-                        <li><Link to="/leaves/leaveFrom">Apply for Leave(s)</Link></li>
-                        <Link><li>Manage Leave(s)</li></Link>
-                        <Link><li>View Status</li></Link>
+                        <li className='hover:text-red-600 '><NavLink  to="/leaves/leaveFrom">Apply for Leave(s)</NavLink></li>
+                        <li className='hover:text-red-600 '><NavLink to="/leaves/leavesManage">Manage Leave(s)</NavLink></li>
+                        <li className='hover:text-red-600 '><NavLink to="/leaves/viewStatus">View Status</NavLink></li>
                     </ul>
                 </div>
                 <div className="divider w-full mx-auto"></div>

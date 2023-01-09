@@ -5,9 +5,11 @@ import Credits from '../pages/Credits/Credits';
 import ErrorPage from '../pages/Error/ErrorPage';
 import InfoForm from '../pages/InfoForm/InfoForm';
 import LeavesForm from '../pages/LeavesForm/LeavesForm';
+import LeavesManage from '../pages/LeavesManage/LeavesManage';
 import LoginForm from '../pages/LoginForm/LoginForm';
 import SingUpForm from '../pages/SingUpForm/SignUpForm';
 import Verification from '../pages/SingUpForm/Verification';
+import ViewStatus from '../pages/ViewStatus/ViewStatus';
 
 const router = createBrowserRouter([
     {
@@ -54,7 +56,15 @@ const router = createBrowserRouter([
             {
                 path: '/leaves/leaveFrom',
                 element: <LeavesForm />
-            }
+            },
+            {
+                path: '/leaves/leavesManage',
+                element: <LeavesManage />
+            },
+            {
+                path: '/leaves/viewStatus',
+                element: <ViewStatus />
+            },
         ]
     }
 ])
