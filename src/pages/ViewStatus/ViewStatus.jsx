@@ -2,8 +2,10 @@ import React from 'react';
 
 const ViewStatus = () => {
     return (
-        <div className='w-11/12 mx-auto'>
-            <h1>View Status of Apply leaves</h1>
+        <div className=''>
+            <div className='bg-slate-300 py-8 md:rounded-lg'>
+                    <h1 className='text-2xl font-semibold text-center'>Pending your application</h1>
+                </div>
         </div>
     );
 };
