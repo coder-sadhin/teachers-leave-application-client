@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
+import Footer from '../../pages/Footer/Footer';
 import Navbar from '../../pages/Navbar/Navber';
 import './LeavesMain.css';
 
@@ -25,10 +26,15 @@ const LeavesMain = () => {
                     </ul>
                 </div>
                 <div className="divider w-full mx-auto"></div>
+                {/* <div className='py-8'>
+                    <h1 className='text-2xl font-semibold text-center'>Welcom to your Leaves section</h1>
+                    <p className='text-center'><strong>Please Click on the Menu</strong></p>
+                </div> */}
                 <div>
                     <Outlet></Outlet>
                 </div>
             </div>
+            <Footer />
         </section>
     );
 };

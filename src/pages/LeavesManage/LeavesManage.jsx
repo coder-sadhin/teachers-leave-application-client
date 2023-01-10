@@ -5,7 +5,7 @@ import PrimaryButton from '../../Components/Button/PrimaryButton';
 
 const LeavesManage = () => {
     return (
-        <section className='bg-slate-300 py-8 rounded-lg'>
+        <section className='bg-slate-300 py-8 md:rounded-lg'>
             <div className='w-11/12 mx-auto mt-8'>
             <h1 className='text-2xl font-bold mb-8'>Leaves You Applied</h1>
                 <div>
@@ -16,7 +16,7 @@ const LeavesManage = () => {
                             Monday, May 25 2023
                         </h2>
                     </div>
-                    <div className='w-10/12 md:w-8/12 ml-20'>
+                    <div className='ml-20'>
                         <p className='text-justify mb-8'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, explicabo quibusdam voluptatem nihil fugit at eveniet perspiciatis, cum omnis voluptatibus, eos ipsum veritatis dignissimos? Nam possimus incidunt quia rem reprehenderit!</p>
                         <div className='flex justify-between items-center'>
                             <PrimaryButton>Cancle Leave</PrimaryButton>
@@ -38,7 +38,7 @@ const LeavesManage = () => {
                         Monday, May 25 2023
                     </h2>
                 </div>
-                <div className='w-10/12 md:w-8/12 ml-20'>
+                <div className='ml-20'>
                     <p className='text-justify mb-8'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, explicabo quibusdam voluptatem nihil fugit at eveniet perspiciatis, cum omnis voluptatibus, eos ipsum veritatis dignissimos? Nam possimus incidunt quia rem reprehenderit!</p>
                 </div>
             </div>
