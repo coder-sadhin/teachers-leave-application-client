@@ -5,22 +5,25 @@ import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
 
 const LeavesForm = () => {
-    const {user, loading} = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
+    // const [userInfo, setUserInfo] = useState(null);
     console.log(user);
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
 
-    const {data: userInfo = [], isLoading} = useQuery({
+    const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
-        queryFn: async() => {
-            const res = await fetch(`https://teachers-leave-application-server.vercel.app/userInfo?email=${user?.email}`);
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/userInfo?email=${user.email}`);
             const data = await res.json();
             return data;
         }
     });
+    if (!user) {
+        refetch()
+    }
 
-
-    if(isLoading || loading){
+    if (loading || isLoading) {
         return <Spinner />
     }
     console.log(userInfo);
@@ -50,13 +53,13 @@ const LeavesForm = () => {
             totalDays,
             description
         }
-    
+
         console.log(leavesInfo);
     }
     return (
         <div className='container mx-auto'>
             <div className="bg-slate-300 py-8 rounded-lg">
-                <div className="hero-content flex-col">
+                <div className=" flex-col">
                     <form onSubmit={handleSubmit(handleSave)} className="card w-full">
                         <div className='w-11/12 mx-auto'>
                             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
@@ -76,25 +79,25 @@ const LeavesForm = () => {
                                 <label className="label">
                                     <span className="label-text">Full name</span>
                                 </label>
-                                <input defaultValue={userInfo?.details?.name} readOnly type="name" {...register("name", { required: "name is required"})} className="bg-gray-100 input input-bordered" />
+                                <input defaultValue={userInfo?.details?.name} readOnly type="text" {...register("name", { required: "name is required" })} className="bg-gray-100 input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Department</span>
                                 </label>
-                                <input defaultValue={userInfo?.department} readOnly type="department" {...register("department", { required: "department is required"})} className="bg-gray-100 input input-bordered" />
+                                <input defaultValue={userInfo?.department} readOnly type="text" {...register("department", { required: "department is required" })} className="bg-gray-100 input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Shift</span>
                                 </label>
-                                <input defaultValue={userInfo?.shift} readOnly type="shift" {...register("shift", { required: "shift is required"})} className="bg-gray-100 input input-bordered" />
+                                <input defaultValue={userInfo?.shift} readOnly type="text" {...register("shift", { required: "shift is required" })} className="bg-gray-100 input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Leaves category</span>
                                 </label>
-                                <select name='leaves' {...register("leaves", { required: "leaves is required"})} className="bg-gray-100 select select-bordered w-full">
+                                <select name='leaves' {...register("leaves", { required: "leaves is required" })} className="bg-gray-100 select select-bordered w-full">
                                     <option>Casual Leave</option>
                                     <option>Sich Leave</option>
                                     <option>Festival Holiday</option>
@@ -106,34 +109,34 @@ const LeavesForm = () => {
                                 <label className="label">
                                     <span className="label-text">Title</span>
                                 </label>
-                                <input defaultValue={userInfo?.title} readOnly type="title" {...register("title", { required: "title is required"})} className="bg-gray-100 input input-bordered" />
+                                <input defaultValue={userInfo?.title} readOnly type="text" {...register("title", { required: "title is required" })} className="bg-gray-100 input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Start date<span className='text-red-600'>*</span></span>
                                 </label>
-                                <input type="date" {...register("startDate", { required: "Start date is required"})} placeholder="Your Birthday" className="bg-gray-100 input input-bordered" />
+                                <input type="date" {...register("startDate", { required: "Start date is required" })} placeholder="Your Birthday" className="bg-gray-100 input input-bordered" />
                                 {errors.startDate && <p role="alert" className='text-red-600'>{errors.startDate?.message}</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">End date<span className='text-red-600'>*</span></span>
                                 </label>
-                                <input type="date" {...register("endDate", { required: "End date is required"})} placeholder="Your Birthday" className="bg-gray-100 input input-bordered" />
+                                <input type="date" {...register("endDate", { required: "End date is required" })} placeholder="Your Birthday" className="bg-gray-100 input input-bordered" />
                                 {errors.endDate && <p role="alert" className='text-red-600'>{errors.endDate?.message}</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">No. of days leaves required<span className='text-red-600'>*</span></span>
                                 </label>
-                                <input type="number" {...register("totalDays", { required: "Total days is required"})} placeholder="Enter no. of leaves" className="bg-gray-100 input input-bordered" />
+                                <input type="number" {...register("totalDays", { required: "Total days is required" })} placeholder="Enter no. of leaves" className="bg-gray-100 input input-bordered" />
                                 {errors.totalDays && <p role="alert" className='text-red-600'>{errors.totalDays?.message}</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Reason for Leave<span className='text-red-600'>*</span></span>
                                 </label>
-                                <textarea {...register("description", { required: "Reason for leave is required"})} className="textarea bg-gray-100 input-bordered" placeholder="Description"></textarea>
+                                <textarea {...register("description", { required: "Reason for leave is required" })} className="textarea bg-gray-100 input-bordered" placeholder="Description"></textarea>
                                 {errors.description && <p role="alert" className='text-red-600'>{errors.description?.message}</p>}
                             </div>
                             <div className="form-control mt-4">

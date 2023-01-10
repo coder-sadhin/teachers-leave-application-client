@@ -175,7 +175,7 @@ const InfoForm = ({ signUpInfo }) => {
                                         <label className="label">
                                             <span className="label-text">Email</span>
                                         </label>
-                                        <input type="email" {...register("email", { required: "Email is required" })} placeholder="Your Email" className="bg-gray-100 input input-bordered" />
+                                        <input defaultValue={email} readOnly type="email" {...register("email", { required: "Email is required" })} placeholder="Your Email" className="bg-gray-100 input input-bordered" />
                                         {errors.email && <p role="alert" className='text-red-600'>{errors.email?.message}</p>}
                                     </div>
                                     <div className="form-control">

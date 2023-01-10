@@ -10,6 +10,7 @@ import LoginForm from '../pages/LoginForm/LoginForm';
 import SingUpForm from '../pages/SingUpForm/SignUpForm';
 import Verification from '../pages/SingUpForm/Verification';
 import ViewStatus from '../pages/ViewStatus/ViewStatus';
+import PrivateRoute from './PrivetRoute';
 
 const router = createBrowserRouter([
     {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/infoForm',
-                element: <InfoForm />
+                element: <PrivateRoute><InfoForm /></PrivateRoute>
             },
             {
                 path: '/confirm',
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/leavesForm',
-                element: <LeavesForm />
+                element: <PrivateRoute><LeavesForm /></PrivateRoute>
             },
             {
                 path: '/credits',
