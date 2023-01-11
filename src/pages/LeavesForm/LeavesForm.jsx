@@ -14,7 +14,7 @@ const LeavesForm = () => {
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/userInfo?email=${user.email}`);
+            const res = await fetch(`https://teachers-leave-application-server.vercel.app/userInfo?email=${user.email}`);
             const data = await res.json();
             return data;
         }
