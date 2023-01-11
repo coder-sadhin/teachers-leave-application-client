@@ -20,6 +20,7 @@ const Navbar = () => {
                                     <li><Link to="/confirm">Confirm</Link></li>
                                     <li><Link to="/leaves">Leaves</Link></li>
                                     <li><Link to="/credits">Credits</Link></li>
+                                    <li><Link to="/dashboard">Dashboard</Link></li>
                                     <li><Link onClick={LogOut}>Log Out</Link></li>
                                 </ul>
                             </div>

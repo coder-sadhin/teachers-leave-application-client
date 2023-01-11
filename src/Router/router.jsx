@@ -1,7 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
+import DashboardLayout from '../Layout/DashboardLayout/DashboardLayout';
 import LeavesMain from '../Layout/LeavesMain/LeavesMain';
 import Main from '../Layout/Main';
 import Credits from '../pages/Credits/Credits';
+import AddDepartment from '../pages/Dashboard/AddDepartment/AddDepartment';
+import AddLeave from '../pages/Dashboard/AddLeave/AddLeave';
+import Dashboard from '../pages/Dashboard/Dashboard';
 import ErrorPage from '../pages/Error/ErrorPage';
 import InfoForm from '../pages/InfoForm/InfoForm';
 import LeavesForm from '../pages/LeavesForm/LeavesForm';
@@ -67,7 +71,25 @@ const router = createBrowserRouter([
                 element: <ViewStatus />
             },
         ]
-    }
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/addDepartment',
+                element: <AddDepartment></AddDepartment>
+            },
+            {
+                path: '/dashboard/addLeave',
+                element: <AddLeave />
+            },
+        ]
+    },
 ])
 
 export default router;
