@@ -51,7 +51,7 @@ const LoginForm = () => {
                                     <input type="password" {...register("password", { required: "Password is required" })} placeholder="password" className="bg-gray-100 input input-bordered" />
                                     {errors.password && <p role="alert" className='text-red-600'>{errors.password?.message}</p>}
                                 </div>
-                                <input className='btn btn-outline text-black font-bold mt-4' type="submit" value="Login" />
+                                <button className='btn bg-green-500 btn-outline text-black hover:bg-blue-600 font-bold mt-4' type="submit">Login</button>
                             </form>
                             <p className='font-bold text-center text-lg mb-4 hidden md:block'>New to our Site? <Link to='/register' className='link link-hover text-red-600'>Create New Account</Link></p>
                             <p className='font-bold text-center mb-4 md:hidden'>New to our Site? <Link to='/register' className='link link-hover text-red-600'>Sign Up</Link></p>
@@ -62,7 +62,7 @@ const LoginForm = () => {
                             <h2 className='text-3xl font-bold'>Hello, Users</h2>
                             <div className='border-2 w-10 border-white inline-block mb-2'></div>
                             <p className='mb-10'>Fill up personal Information and start journey with us (RPI).</p>
-                            <Link className='border-2 border-white font-semibold hover:bg-white hover:text-green-500 rounded-full px-12 py-2 inline-block' to='/register'>Sign Up</Link>
+                            <Link className='border-2 border-white font-semibold hover:bg-blue-600 hover:text-white rounded-full px-12 py-2 inline-block' to='/register'>Sign Up</Link>
                         </div>
                     </div>
                 </div>

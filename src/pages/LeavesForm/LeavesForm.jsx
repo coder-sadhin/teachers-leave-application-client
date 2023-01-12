@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
+import { serverApi } from '../../ServerApi/ServerApi';
 
 const LeavesForm = () => {
     const { user, loading } = useContext(AuthContext);
@@ -14,12 +15,12 @@ const LeavesForm = () => {
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
         queryFn: async () => {
-            const res = await fetch(`https://teachers-leave-application-server.vercel.app/userInfo?email=${user.email}`);
+            const res = await fetch(`${serverApi}/userInfo?email=${user.email}`);
             const data = await res.json();
             return data;
         }
     });
-    if (!user) {
+    if (user?.email) {
         refetch()
     }
 
