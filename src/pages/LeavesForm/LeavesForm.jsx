@@ -22,8 +22,8 @@ const LeavesForm = () => {
     });
 
     console.log(userInfo);
-    if (user?.email) {
-        if (!userInfo) {
+    if (user?.email || user) {
+        if (!userInfo || userInfo === "Unauthorized Access") {
             refetch()
         }
     }
