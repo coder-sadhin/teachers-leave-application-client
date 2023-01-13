@@ -26,7 +26,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className="navbar-center">
-                            <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+                            <Link className="btn btn-ghost normal-case text-2xl font-semibold">RPI Leave App</Link>
                         </div>
                         <div className="navbar-end">
                             <button className="btn btn-ghost btn-circle">

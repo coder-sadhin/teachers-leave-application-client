@@ -3,24 +3,25 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
-import { serverApi } from '../../ServerApi/ServerApi';
 
 const LeavesForm = () => {
     const { user, loading } = useContext(AuthContext);
     // const [userInfo, setUserInfo] = useState(null);
+    console.log(user);
     const { register, handleSubmit, formState: { errors } } = useForm();
-
 
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
         queryFn: async () => {
-            const res = await fetch(`${serverApi}/userInfo?email=${user?.email}`);
+            const res = await fetch(`http://localhost:5000/userInfo?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
     });
-    if (!user) {
-        refetch()
+    if (user?.email) {
+        if (!userInfo) {
+            refetch()
+        }
     }
 
     if (loading || isLoading) {
@@ -29,31 +30,47 @@ const LeavesForm = () => {
 
 
     const handleSave = data => {
-
         const department = data.department;
         const name = data.name;
         const shift = data.shift;
-        const leaves = data.leaves;
+        const leaves_C = data.leaves;
         const title = data.title;
         const startDate = data.startDate;
         const endDate = data.endDate;
         const totalDays = data.totalDays;
         const description = data.description;
-
-
         const leavesInfo = {
             name,
             department,
             shift,
-            leaves,
+            leaves_C,
             title,
             startDate,
             endDate,
             totalDays,
             description
         }
+        const dataInfo = leavesInfo;
+        // console.log(leavesInfo);
+        fetch(`${serverApi}/applyLeave`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(dataInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                if (data.acknowledged === true) {
+                    toast.success('Leave Application Complete, Please wait for aproved');
 
-        console.log(leavesInfo);
+                } else {
+                    // toast.error(data)
+                    toast.success(data)
+                }
+            })
+            .catch(err => console.error(err))
     }
     return (
         <div className='container mx-auto'>
