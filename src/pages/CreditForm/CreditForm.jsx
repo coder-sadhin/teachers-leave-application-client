@@ -82,6 +82,12 @@ const CreditForm = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text">Semester</span>
+                                </label>
+                                <input type="text" defaultValue="8th" readOnly {...register("semester", { required: "Semester is required" })} className="bg-gray-100 input input-bordered" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
                                     <span className="label-text">Shift</span>
                                 </label>
                                 <input type="text" defaultValue="2nd" readOnly {...register("shift", { required: "Shift is required" })} className="bg-gray-100 input input-bordered" />
