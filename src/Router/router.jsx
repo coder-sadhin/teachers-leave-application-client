@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import DashboardLayout from '../Layout/DashboardLayout/DashboardLayout';
 import LeavesMain from '../Layout/LeavesMain/LeavesMain';
 import Main from '../Layout/Main';
+import CreditForm from '../pages/CreditForm/CreditForm';
 import Credits from '../pages/Credits/Credits';
 import AddDepartment from '../pages/Dashboard/AddDepartment/AddDepartment';
 import AddLeave from '../pages/Dashboard/AddLeave/AddLeave';
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             {
                 path: '/credits',
                 element: <Credits />
+            },
+            {
+                path: '/creditForm',
+                element: <CreditForm />
             }
         ]
 
@@ -58,6 +63,10 @@ const router = createBrowserRouter([
         element: <LeavesMain />,
         errorElement: <ErrorPage />,
         children: [
+            {
+                path: '/leaves',
+                element: <LeavesForm />
+            },
             {
                 path: '/leaves/leaveFrom',
                 element: <LeavesForm />

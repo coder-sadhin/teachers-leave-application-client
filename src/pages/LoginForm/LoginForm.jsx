@@ -51,7 +51,7 @@ const LoginForm = () => {
                                     <input type="password" {...register("password", { required: "Password is required" })} placeholder="password" className="bg-gray-100 input input-bordered" />
                                     {errors.password && <p role="alert" className='text-red-600'>{errors.password?.message}</p>}
                                 </div>
-                                <button className='btn bg-green-500 btn-outline text-black hover:bg-blue-600 font-bold mt-4' type="submit">Login</button>
+                                <button className='btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold mt-4' type="submit">Login</button>
                             </form>
                             <p className='font-bold text-center text-lg mb-4 hidden md:block'>New to our Site? <Link to='/register' className='link link-hover text-red-600'>Create New Account</Link></p>
                             <p className='font-bold text-center mb-4 md:hidden'>New to our Site? <Link to='/register' className='link link-hover text-red-600'>Sign Up</Link></p>

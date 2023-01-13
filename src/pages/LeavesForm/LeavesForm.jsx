@@ -8,16 +8,20 @@ import { toast } from 'react-hot-toast';
 
 const LeavesForm = () => {
     const { user, loading } = useContext(AuthContext);
+    // const [userInfo, setUserInfo] = useState(null);
+    // console.log(user);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
         queryFn: async () => {
-            const res = await fetch(`${serverApi}/userInfo?email=${user.email}`);
+            const res = await fetch(`${serverApi}/userInfo?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
     });
+
+    console.log(userInfo);
     if (user?.email) {
         if (!userInfo) {
             refetch()
@@ -27,7 +31,6 @@ const LeavesForm = () => {
     if (loading || isLoading) {
         return <Spinner />
     }
-    console.log(userInfo);
 
 
     const handleSave = data => {
