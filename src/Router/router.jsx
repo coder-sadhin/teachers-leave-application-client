@@ -59,6 +59,10 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
+                path: '/leaves',
+                element: <LeavesForm />
+            },
+            {
                 path: '/leaves/leaveFrom',
                 element: <LeavesForm />
             },

@@ -3,18 +3,18 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
+import { serverApi } from '../../ServerApi/ServerApi';
 
 const LeavesForm = () => {
     const { user, loading } = useContext(AuthContext);
     // const [userInfo, setUserInfo] = useState(null);
-    console.log(user);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/userInfo?email=${user?.email}`);
+            const res = await fetch(`${serverApi}/userInfo?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -26,7 +26,6 @@ const LeavesForm = () => {
     if (loading || isLoading) {
         return <Spinner />
     }
-    console.log(userInfo);
 
 
     const handleSave = data => {
