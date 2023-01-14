@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -5,27 +6,37 @@ import Spinner from '../../../Components/Spinner/Spinner';
 import { serverApi } from '../../../ServerApi/ServerApi';
 
 const AddLeave = () => {
-    const [leaves, setLeaves] = useState([]);
+    // const [leaves, setLeaves] = useState([]);
     const [addForm, setAddform] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-        fetch(`${serverApi}/leaveCategoris`)
-            .then(res => res.json())
-            .then(data => {
-                setIsLoading(false);
-                setLeaves(data);
-            })
-            .catch(err => console.error(err))
-    }, [addForm])
+    // const [isLoading, setIsLoading] = useState(true);
 
-    console.log(leaves)
+    // get leaveCategories from database
+
+    const {data: leaves = [], isLoading, refetch} = useQuery({
+        queryKey: ['leaveCategories'],
+        queryFn: async () => {
+            const res = await fetch(`${serverApi}/leaveCategoris`);
+            const data = await res.json();
+            return data;
+        }
+    });
+    // useEffect(() => {
+    //     fetch(`${serverApi}/leaveCategoris`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setIsLoading(false);
+    //             setLeaves(data);
+    //         })
+    //         .catch(err => console.error(err))
+    // }, [addForm])
+
+
+   // add leave data to database
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleToAddLeave = data => {
         
         const leaveName = data.leaveName;
         const totalday = data.totalDay;
-        // console.log(leaveName)
-        // setAddform(false)
         const leaveInfo = { leaveName, totalday }
         fetch(`${serverApi}/addLeave`, {
             method: "POST",
@@ -42,10 +53,25 @@ const AddLeave = () => {
                     setAddform(false)
                 } else {
                     toast.error(data)
+                    refetch();
                 }
             })
             .catch(err => console.error(err))
     }
+
+    // delete leaveCategory from database
+    const handleDelete = id => {
+
+        fetch(`${serverApi}/leaveCategory/${id}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(data => {
+            toast.success('Leave Category successfully deleted!')
+            refetch();
+        })
+    }
+
     if(isLoading){
         return <Spinner />
     }
@@ -73,7 +99,7 @@ const AddLeave = () => {
                                     <td>{leave?.leaveName}</td>
                                     <td>{leave?.totalday}</td>
                                     <td><button className='btn btn-outline border-1 border-green-600 text-black hover:bg-green-600 rounded-b-2xl font-bold btn-sm'>Update</button></td>
-                                    <td><button className='btn btn-outline border-1 border-red-600 text-black hover:bg-red-600 rounded-b-2xl font-bold btn-sm'>Delete</button></td>
+                                    <td><button onClick={ () => handleDelete(leave?._id)} className='btn btn-outline border-1 border-red-600 text-black hover:bg-red-600 rounded-b-2xl font-bold btn-sm'>Delete</button></td>
                                 </tr>)
                             }
                         </tbody>
