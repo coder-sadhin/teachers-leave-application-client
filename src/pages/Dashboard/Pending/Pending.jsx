@@ -1,11 +1,32 @@
-import React from 'react';
-import calenderLogo from '../../../assets/calender-logo.png'
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+import calenderLogo from '../../../assets/calender-logo.png';
+import Spinner from '../../../Components/Spinner/Spinner';
+import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
+import { serverApi } from '../../../ServerApi/ServerApi';
 
 const Pending = () => {
+    const {user} = useContext(AuthContext);
+
+    const {data: leaves = [], isLoading, refetch} = useQuery({
+        queryKey: ['pendingLeave'],
+        queryFn: async () => {
+            const res = await fetch(`${serverApi}/pendingLeave?email=${user?.email}`);
+            const data = await res.json();
+            return data;
+        }
+    });
+    console.log(user);
+    console.log(leaves);
+
+    if(isLoading) {
+        return <Spinner />
+    }
+    
     return (
         <section className='bg-slate-300 py-8 md:rounded-lg'>
             <div className='w-11/12 mx-auto mt-8'>
-                <h1 className='text-2xl font-bold mb-8'>Requeted to You</h1>
+                <h1 className='text-2xl font-bold text-center mb-8'>Requeted to You</h1>
                 <div>
                     <div className='flex items-center'>
                         <img className='w-12 h-12 rounded-full bg-cyan-500 p-2 mr-4' src={calenderLogo} alt="" />
