@@ -4,10 +4,6 @@ import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import useUserType from '../../Hooks/useUserType';
 
 
-
-
-
-
 const Dashboard = () => {
 
     const { user } = useContext(AuthContext)
