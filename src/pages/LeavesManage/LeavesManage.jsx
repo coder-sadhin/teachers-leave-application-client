@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import calenderLogo from '../../assets/calender-logo.png'
 import PrimaryButton from '../../Components/Button/PrimaryButton';
+import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
+import { serverApi } from '../../ServerApi/ServerApi';
+import { toast } from 'react-hot-toast';
 
 const LeavesManage = () => {
+    const { user } = useContext(AuthContext);
+    const [leaveData, setLeaveData] = useState([]);
+
+    useEffect(() => {
+        fetch(`${serverApi}/manageLeave?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setLeaveData(data))
+            .catch(err => toast.error(err))
+    }, [user, user?.email])
+
     return (
         <section className='bg-slate-300 py-8 md:rounded-lg'>
             <div className='w-11/12 mx-auto mt-8'>
-            <h1 className='text-2xl font-bold mb-8'>Leaves You Applied</h1>
+                <h1 className='text-2xl font-bold mb-8'>Leaves You Applied</h1>
                 <div>
                     <div className='flex items-center'>
                         <img className='w-16 h-16 rounded-full bg-cyan-500 p-2 mr-4' src={calenderLogo} alt="" />
