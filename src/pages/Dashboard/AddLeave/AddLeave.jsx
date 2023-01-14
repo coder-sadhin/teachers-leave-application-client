@@ -4,37 +4,36 @@ import { toast } from 'react-hot-toast';
 import { serverApi } from '../../../ServerApi/ServerApi';
 
 const AddLeave = () => {
-    const [leave, setLeave] = useState([]);
+    const [leaves, setLeaves] = useState([]);
     const [addForm, setAddform] = useState(false);
     useEffect(() => {
-        fetch(`${serverApi}/addLeave`)
+        fetch(`${serverApi}/leaveCategoris`)
             .then(res => res.json())
-            .then(data => setLeave(data))
+            .then(data => setLeaves(data))
             .catch(err => console.error(err))
     }, [addForm])
 
+    console.log(leaves)
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const handleToAddLeave = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const leaveName = form.leaveName.value;
-        const totalday = form.totalday.value;
+    const handleToAddLeave = data => {
+        
+        const leaveName = data.leaveName;
+        const totalday = data.totalDay;
         // console.log(leaveName)
         // setAddform(false)
-        const data = { leaveName, totalday }
+        const leaveInfo = { leaveName, totalday }
         fetch(`${serverApi}/addLeave`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(leaveInfo)
         })
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
                 if (data.acknowledged === true) {
                     toast.success('leave successfully added');
-                    form.reset();
                     setAddform(false)
                 } else {
                     toast.error(data)
@@ -47,13 +46,32 @@ const AddLeave = () => {
             <h1 className='text-2xl font-bold text-center'>Welcome to leaves Page</h1>
             <div className='my-8'>
                 <h3 className='text-xl font-bold mb-3'>Available leave</h3>
-                <div className='grid grid-cols-3 gap-5'>
-                    {
-                        leave.map(d => <div className='w-full py-3 px-5 bg-green-300 text-black' key={d._id}>
-                            <h3 className='text-xl font-bold flex justify-between items-center'><span>{d.d_name}</span><span className='text-red-700 cursor-pointer'>X</span></h3>
-                        </div>)
-                    }
+                <div>
+                <div className="overflow-x-auto">
+                    <table className="table w-full">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Leave Category</th>
+                            <th>Total Day(s)</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                leaves.map((leave, index) => <tr key={leave?._id}>
+                                    <th>{index + 1}</th>
+                                    <td>{leave?.leaveName}</td>
+                                    <td>{leave?.totalday}</td>
+                                    <td><button className='btn btn-outline border-1 border-green-600 text-black hover:bg-green-600 rounded-b-2xl font-bold btn-sm'>Update</button></td>
+                                    <td><button className='btn btn-outline border-1 border-red-600 text-black hover:bg-red-600 rounded-b-2xl font-bold btn-sm'>Delete</button></td>
+                                </tr>)
+                            }
+                        </tbody>
+                    </table>
                 </div>
+            </div>
             </div>
             {
                 !addForm &&

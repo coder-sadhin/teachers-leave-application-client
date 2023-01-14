@@ -5,11 +5,11 @@ import useUserType from '../../Hooks/useUserType';
 
 
 
-<<<<<<< HEAD
+
+
+
 const Dashboard = () => {
-=======
-const DashBoard = () => {
->>>>>>> 7a76d145f62cc38e701dfd6b3c2a356d93d63222
+
     const { user } = useContext(AuthContext)
     const [isSuperAdmin, isSubSuperAdmin, isAdmin, isUser, userLoading] = useUserType(user?.email)
 

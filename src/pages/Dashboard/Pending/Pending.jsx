@@ -2,7 +2,7 @@ import React from 'react';
 
 const Pending = () => {
     return (
-        <div className='min-h-[100vh]'>
+        <div className=''>
             <h1 className=' text-2xl text-center'>Pending page</h1>
         </div>
     );
