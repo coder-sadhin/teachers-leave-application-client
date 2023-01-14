@@ -3,7 +3,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const CreditDetails = () => {
     const credit = useLoaderData();
-    const { img, name, title, session, department, shift, description } = credit;
+    const { img, name, title, session, department, semester, shift, description } = credit;
 
     console.log(credit);
     return (
@@ -14,6 +14,7 @@ const CreditDetails = () => {
                     <h2 className=" text-xl md:text-2xl font-bold mt-6">{name}</h2>
                     <p className='text-xl font-bold'>{title}</p>
                     <p className='text-lg'><strong>Department: {department}</strong></p>
+                    <p className='text-lg'><strong>Semester: {semester}</strong></p>
                     <p className='text-lg'><strong>Shift: {shift}</strong></p>
                     <p className='text-lg'><strong>Session: {session}</strong></p>
                     <p className='text-justify text-lg font-bold my-10'>{description}</p>
