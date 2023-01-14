@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [dashboardModalIcon, setDashboardModalIcon] = useState(false)
 
     const createUser = (email, pass) => {
         setLoading(true)
@@ -67,7 +68,9 @@ const AuthProvider = ({ children }) => {
         signInWithGoogle,
         updatePass,
         setLoading,
-        userVerification
+        userVerification,
+        dashboardModalIcon,
+        setDashboardModalIcon
     }
 
     return (

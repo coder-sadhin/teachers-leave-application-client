@@ -1,15 +1,18 @@
 import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
+import useUserType from '../../Hooks/useUserType';
 import Footer from '../../pages/Footer/Footer';
 import Navbar from '../../pages/Navbar/Navber';
 import './LeavesMain.css';
 
 const LeavesMain = () => {
     const { user } = useContext(AuthContext);
+    const [isUser] = useUserType(user?.email);
     return (
         <section className='bg-base-200'>
             <Navbar />
+
             <div className='container mx-auto py-12'>
                 <div className='text-center lg:flex lg:justify-between lg:items-center w-11/12 mx-auto'>
                     <h3 className='text-xl md:text-2xl lg:text-3xl font-semibold lg:text-start'>You have spent <span className='font-bold'>3 leave </span>this year</h3>
@@ -34,7 +37,9 @@ const LeavesMain = () => {
                     <Outlet></Outlet>
                 </div>
             </div>
+
             <Footer />
+
         </section>
     );
 };
