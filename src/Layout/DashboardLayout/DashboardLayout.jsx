@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
+import useUserType from '../../Hooks/useUserType';
 import Footer from '../../pages/Footer/Footer';
 import Navbar from '../../pages/Navbar/Navber';
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
+    const [isSuperAdmin, isSubSuperAdmin, isAdmin, isUser, userLoading] = useUserType(user?.email)
     return (
         <section className='bg-base-200 '>
             <Navbar />
@@ -14,8 +16,12 @@ const DashboardLayout = () => {
                 <div className="drawer-side z-10">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-bold bg-blue-200">
-                        <li className='text-xl '><NavLink to="/dashboard/addDepartment">Add Department</NavLink></li>
-                        <li className='text-xl'><NavLink to="/dashboard/addLeave">Add Leave</NavLink></li>
+                        {
+                            isSuperAdmin && <>
+                                <li className='text-xl'><NavLink to="/dashboard/addDepartment">Add Department</NavLink></li>
+                                <li className='text-xl'><NavLink to="/dashboard/addLeave">Add Leave</NavLink></li>
+                            </>
+                        }
                         <li className='text-xl'><NavLink to="/dashboard/pending">Pending</NavLink></li>
                         <li className='text-xl'><NavLink to="/dashboard/history">History</NavLink></li>
                         {/* <li><button onClick={handleToSignOut}>Sign Out</button></li> */}

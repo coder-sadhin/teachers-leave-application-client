@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import PrimaryButton from '../../Components/Button/PrimaryButton';
 import Spinner from '../../Components/Spinner/Spinner';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import { serverApi } from '../../ServerApi/ServerApi';

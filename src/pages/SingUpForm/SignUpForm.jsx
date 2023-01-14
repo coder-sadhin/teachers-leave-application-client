@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import PrimaryButton from '../../Components/Button/PrimaryButton';
 import SmallSpinner from '../../Components/Spinner/SmallSpinner';
 import InfoForm from '../InfoForm/InfoForm';
 

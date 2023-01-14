@@ -19,7 +19,9 @@ import Verification from '../pages/SingUpForm/Verification';
 import ViewStatus from '../pages/ViewStatus/ViewStatus';
 import PrivateRoute from './PrivetRoute';
 import History from '../pages/Dashboard/History/History';
+import Home from '../pages/Home';
 import { serverApi } from '../ServerApi/ServerApi';
+
 
 const router = createBrowserRouter([
     {
@@ -29,7 +31,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <LoginForm />
+                element: <Home />
             },
             {
                 path: '/login',
@@ -62,7 +64,8 @@ const router = createBrowserRouter([
             {
                 path: '/credit/:id',
                 element: <CreditDetails />,
-                loader: ({params}) => fetch(`${serverApi}/credit/${params.id}`)
+                loader: ({ params }) => fetch(`${serverApi}/credit/${params.id}`)
+
             },
         ]
 
@@ -74,11 +77,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/leaves',
-                element: <LeavesForm />
+                element: <PrivateRoute><LeavesForm /></PrivateRoute>
             },
             {
                 path: '/leaves/leaveFrom',
-                element: <LeavesForm />
+                element: <PrivateRoute><LeavesForm /></PrivateRoute>
             },
             {
                 path: '/leaves/leavesManage',
@@ -86,34 +89,34 @@ const router = createBrowserRouter([
             },
             {
                 path: '/leaves/viewStatus',
-                element: <ViewStatus />
+                element: <PrivateRoute><ViewStatus /></PrivateRoute>
             },
         ]
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
                 path: '/dashboard',
-                element: <DashBoard />
+                element: <PrivateRoute><DashBoard /></PrivateRoute>
             },
             {
                 path: '/dashboard/addDepartment',
-                element: <AddDepartment></AddDepartment>
+                element: <PrivateRoute><AddDepartment /></PrivateRoute>
             },
             {
                 path: '/dashboard/addLeave',
-                element: <AddLeave />
+                element: <PrivateRoute><AddLeave /></PrivateRoute>
             },
             {
                 path: '/dashboard/pending',
-                element: <Pending />
+                element: <PrivateRoute><Pending /></PrivateRoute>
             },
             {
                 path: '/dashboard/history',
-                element: <History />
-            },
+                element: <PrivateRoute><History /></PrivateRoute>
+            }
         ]
     },
 ])
