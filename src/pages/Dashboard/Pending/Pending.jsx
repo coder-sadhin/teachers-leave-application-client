@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import calenderLogo from '../../../assets/calender-logo.png'
 
 const Pending = () => {
@@ -25,7 +24,6 @@ const Pending = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     );
