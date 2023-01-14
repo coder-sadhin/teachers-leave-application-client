@@ -41,8 +41,10 @@ const LeavesForm = () => {
         const endDate = data.endDate;
         const totalDays = data.totalDays;
         const description = data.description;
+        const status = "pending"
         const leavesInfo = {
             name,
+            email: user.email,
             department,
             shift,
             leaves_C,
@@ -50,7 +52,8 @@ const LeavesForm = () => {
             startDate,
             endDate,
             totalDays,
-            description
+            description,
+            status
         }
         const dataInfo = leavesInfo;
         // console.log(leavesInfo);
