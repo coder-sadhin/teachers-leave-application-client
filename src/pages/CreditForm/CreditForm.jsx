@@ -19,6 +19,10 @@ const CreditForm = () => {
         const shift = data.shift;
         const session = data.session;
         const title = data.title;
+        const email = data.email;
+        const facebook = data.facebook;
+        const linkedIn = data.linkedIn;
+        const github = data.github;
         const description = data.description;
 
         // upload image with imagebb
@@ -34,7 +38,7 @@ const CreditForm = () => {
             .then(imageData => {
                 const img = (imageData.data.display_url);
                 const data = {
-                    name, img, department, semester, shift, session, title, description
+                    name, img, department, semester, shift, session, title, email, facebook, linkedIn, github, description
                 }
                 
 
@@ -103,8 +107,34 @@ const CreditForm = () => {
                                 <label className="label">
                                     <span className="label-text">Title</span>
                                 </label>
-                                <input type="text" {...register("title", { required: "title is required" })} placeholder="Enter your title/position" className="bg-gray-100 input input-bordered" />
+                                <input type="text" {...register("title", { required: "Title is required" })} placeholder="Enter your title/position" className="bg-gray-100 input input-bordered" />
                                 {errors.title && <p role="alert" className='text-red-600'>{errors.title?.message}</p>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">E-mail</span>
+                                </label>
+                                <input type="email" {...register("email", { required: "E-mail is required" })} placeholder="Enter your email" className="bg-gray-100 input input-bordered" />
+                                {errors.email && <p role="alert" className='text-red-600'>{errors.email?.message}</p>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Facebook</span>
+                                </label>
+                                <input type="text" {...register("facebook", { required: "Facebook is required" })} placeholder="Enter your facebook profile link" className="bg-gray-100 input input-bordered" />
+                                {errors.facebook && <p role="alert" className='text-red-600'>{errors.facebook?.message}</p>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">LinkedIn</span>
+                                </label>
+                                <input type="text" {...register("linkedIn")} placeholder="Enter your linkedIn profile link" className="bg-gray-100 input input-bordered" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">GitHub</span>
+                                </label>
+                                <input type="text" {...register("github")} placeholder="Enter your GitHub profile link" className="bg-gray-100 input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -113,7 +143,7 @@ const CreditForm = () => {
                                 <textarea {...register("description", { required: "About is required" })} className="textarea bg-gray-100 input-bordered" placeholder="Enter about your self"></textarea>
                                 {errors.description && <p role="alert" className='text-red-600'>{errors.description?.message}</p>}
                             </div>
-                            <div className="form-control mt-4">
+                            <div className="form-control">
                                 <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold mt-4">Submit</button>
                             </div>
                         </div>

@@ -19,6 +19,7 @@ import Verification from '../pages/SingUpForm/Verification';
 import ViewStatus from '../pages/ViewStatus/ViewStatus';
 import PrivateRoute from './PrivetRoute';
 import History from '../pages/Dashboard/History/History';
+import { serverApi } from '../ServerApi/ServerApi';
 
 const router = createBrowserRouter([
     {
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
             {
                 path: '/credit/:id',
                 element: <CreditDetails />,
-                loader: ({params}) => fetch(`https://teachers-leave-application-server.vercel.app/credit/${params.id}`)
+                loader: ({params}) => fetch(`${serverApi}/credit/${params.id}`)
             },
         ]
 
