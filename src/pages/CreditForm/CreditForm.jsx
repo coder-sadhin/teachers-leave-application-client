@@ -15,6 +15,7 @@ const CreditForm = () => {
         
         const name = data.name;
         const department = data.department;
+        const semester = data.semester;
         const shift = data.shift;
         const session = data.session;
         const title = data.title;
@@ -33,7 +34,7 @@ const CreditForm = () => {
             .then(imageData => {
                 const img = (imageData.data.display_url);
                 const data = {
-                    name, img, department, shift, session, title, description
+                    name, img, department, semester, shift, session, title, description
                 }
                 
 
@@ -113,7 +114,7 @@ const CreditForm = () => {
                                 {errors.description && <p role="alert" className='text-red-600'>{errors.description?.message}</p>}
                             </div>
                             <div className="form-control mt-4">
-                                <button type='submit' className="btn btn-primary">Submit</button>
+                                <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold mt-4">Submit</button>
                             </div>
                         </div>
                     </form>
