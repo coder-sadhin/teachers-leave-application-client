@@ -20,7 +20,7 @@ const CreditDetails = () => {
                     <p className='text-lg'><strong>Shift: {shift}</strong></p>
                     <p className='text-lg'><strong>Session: {session}</strong></p>
                     <div className='flex justify-center mt-3'>
-                        <a className='hover:bg-green-400 p-2 rounded-full mr-3' href={email}><HiOutlineMail className='text-2xl' /></a>
+                        <a className='hover:bg-green-400 p-2 rounded-full mr-3' href={`mailto:${email}`} target="_blank" rel="noopener noreferrer"><HiOutlineMail className='text-2xl' /></a>
                         <a className='hover:bg-green-400 p-2 rounded-full mr-3' href={facebook}><FaFacebookF className='text-2xl' /></a>
                         <a className='hover:bg-green-400 p-2 rounded-full mr-3' href={linkedIn}><FaLinkedinIn className='text-2xl' /></a>
                         <a className='hover:bg-green-400 p-2 rounded-full mr-3' href={github}><FaGithub className='text-2xl' /></a>
