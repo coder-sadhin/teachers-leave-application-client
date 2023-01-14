@@ -16,6 +16,8 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 text-bold bg-blue-200">
                         <li className='text-xl '><NavLink to="/dashboard/addDepartment">Add Department</NavLink></li>
                         <li className='text-xl'><NavLink to="/dashboard/addLeave">Add Leave</NavLink></li>
+                        <li className='text-xl'><NavLink to="/dashboard/pending">Pending</NavLink></li>
+                        <li className='text-xl'><NavLink to="/dashboard/history">History</NavLink></li>
                         {/* <li><button onClick={handleToSignOut}>Sign Out</button></li> */}
                     </ul>
                 </div>
