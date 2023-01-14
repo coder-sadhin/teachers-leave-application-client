@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import Spinner from '../../Components/Spinner/Spinner';
+import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import useUserType from '../../Hooks/useUserType';
 
 
 
-const DashBoard = () => {
-    const { user } = useContext()
-    const [isSuperAdmin, isSubSuperAdmin, isAdmin, isUser, userLoading] = useUserType(user.email)
+const Dashboard = () => {
+    const { user } = useContext(AuthContext)
+    const [isSuperAdmin, isSubSuperAdmin, isAdmin, isUser, userLoading] = useUserType(user?.email)
 
     if (userLoading) {
         return <Spinner />
@@ -22,11 +23,11 @@ const DashBoard = () => {
                 </div>
                 <div className='flex justify-center text-gray-500 items-center mt-4'>
                     <p className='text-3xl font-medium'>{
-                        // (isAdmin && "Admin") || (isSeller && "Seller") || (isUser && "User")
+                        (isSuperAdmin && "Admin") || (isSubSuperAdmin && "Admin") || (isAdmin && "Controller") || (isUser && "User")
                     } Dashboard</p>
                 </div>
             </div>
         </div>
     );
 };
-export default DashBoard;
+export default Dashboard;

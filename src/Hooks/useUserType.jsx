@@ -13,6 +13,7 @@ const useUserType = email => {
             fetch(`${serverApi}/checkuser/type?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
+                    console.log(data);
                     if (data === "superAdmin") {
                         setIsSuperAdmin(true)
                         setUserLoading(false)

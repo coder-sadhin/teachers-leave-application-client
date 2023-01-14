@@ -72,7 +72,7 @@ const LeavesForm = () => {
 
                 } else {
                     // toast.error(data)
-                    toast.success(data)
+                    toast.error(data)
                 }
             })
             .catch(err => console.error(err))

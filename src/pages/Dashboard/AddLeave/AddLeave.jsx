@@ -43,7 +43,7 @@ const AddLeave = () => {
             .catch(err => console.error(err))
     }
     return (
-        <div className='min-h-[100vh]'>
+        <div className=''>
             <h1 className='text-2xl font-bold text-center'>Welcome to leaves Page</h1>
             <div className='my-8'>
                 <h3 className='text-xl font-bold mb-3'>Available leave</h3>

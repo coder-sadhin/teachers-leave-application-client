@@ -15,9 +15,7 @@ const AddDepartment = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleToAddDept = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const deptName = form.deptName.value;
+        const deptName = event.deptName;
         // console.log(deptName)
         // setAddform(false)
         const data = { d_name: deptName }
@@ -33,7 +31,6 @@ const AddDepartment = () => {
                 // console.log(data)
                 if (data.acknowledged === true) {
                     toast.success('Department successfully added');
-                    form.reset();
                     setAddform(false)
                 } else {
                     toast.error(data)
@@ -42,7 +39,7 @@ const AddDepartment = () => {
             .catch(err => console.error(err))
     }
     return (
-        <div className='min-h-[100vh]'>
+        <div className=''>
             <h1 className='text-2xl font-bold text-center'>Welcome to Department Page</h1>
             <div className='my-8'>
                 <h3 className='text-xl font-bold mb-3'>Available Department</h3>
