@@ -43,7 +43,7 @@ const AddDepartment = () => {
             <h1 className='text-2xl font-bold text-center'>Welcome to Department Page</h1>
             <div className='my-8'>
                 <h3 className='text-xl font-bold mb-3'>Available Department</h3>
-                <div className='grid grid-cols-3 gap-5'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
                         dept.map(d => <div className='w-full py-3 px-5 bg-green-300 text-black' key={d._id}>
                             <h3 className='text-xl font-bold flex justify-between items-center'><span>{d.d_name}</span><span className='text-red-700 cursor-pointer'>X</span></h3>
