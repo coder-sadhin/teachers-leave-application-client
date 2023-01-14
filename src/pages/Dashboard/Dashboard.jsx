@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import Spinner from '../../Components/Spinner/Spinner';
+import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import useUserType from '../../Hooks/useUserType';
 
 
 
 const DashBoard = () => {
-    const { user } = useContext()
-    const [isSuperAdmin, isSubSuperAdmin, isAdmin, isUser, userLoading] = useUserType(user.email)
+    const { user } = useContext(AuthContext)
+    const [isSuperAdmin, isSubSuperAdmin, isAdmin, isUser, userLoading] = useUserType(user?.email)
 
     if (userLoading) {
         return <Spinner />

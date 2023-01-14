@@ -13,8 +13,10 @@ const DashboardLayout = () => {
                 <div className=' block md:flex'>
                     <div className='w-full md:w-3/12 bg-gray-700 mr-4 p-8 nav leaves-menu'>
                         <ul className='text-white text-center md:text-start'>
-                            <li className='text-xl '><NavLink to="/dashboard/addDepartment">Add Department</NavLink></li>
+                            <li className='text-xl '><NavLink to="/dashboard/addDepartment">Add Dept</NavLink></li>
                             <li className='text-xl'><NavLink to="/dashboard/addLeave">Add Leave</NavLink></li>
+                            <li className='text-xl'><NavLink to="/dashboard/pending">Pending</NavLink></li>
+                            <li className='text-xl'><NavLink to="/dashboard/history">History</NavLink></li>
                         </ul>
                     </div>
                     <div className='w-full p-8'>
