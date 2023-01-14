@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import Spinner from '../../../Components/Spinner/Spinner';
 import { serverApi } from '../../../ServerApi/ServerApi';
 
 const AddLeave = () => {
     const [leaves, setLeaves] = useState([]);
     const [addForm, setAddform] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         fetch(`${serverApi}/leaveCategoris`)
             .then(res => res.json())
-            .then(data => setLeaves(data))
+            .then(data => {
+                setIsLoading(false);
+                setLeaves(data);
+            })
             .catch(err => console.error(err))
     }, [addForm])
 
@@ -40,6 +45,9 @@ const AddLeave = () => {
                 }
             })
             .catch(err => console.error(err))
+    }
+    if(isLoading){
+        return <Spinner />
     }
     return (
         <div className=''>

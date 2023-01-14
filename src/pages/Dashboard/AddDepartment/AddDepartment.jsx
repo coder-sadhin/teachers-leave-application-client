@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { serverApi } from '../../../ServerApi/ServerApi';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import Spinner from '../../../Components/Spinner/Spinner';
 
 const AddDepartment = () => {
     const [dept, setDept] = useState([]);
     const [addForm, setAddform] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         fetch(`${serverApi}/allDepartment`)
             .then(res => res.json())
-            .then(data => setDept(data))
+            .then(data => {
+                setIsLoading(false);
+                setDept(data);
+            })
             .catch(err => console.error(err))
     }, [addForm])
 
@@ -37,6 +42,10 @@ const AddDepartment = () => {
                 }
             })
             .catch(err => console.error(err))
+    }
+
+    if(isLoading){
+        return <Spinner />
     }
     return (
         <div className=''>

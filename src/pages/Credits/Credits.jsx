@@ -20,7 +20,8 @@ const Credits = () => {
     console.log(credits);
     return (
         <div className='container mx-auto'>
-            <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-16'>
+            <h1 className='text-2xl font-semibold text-center pt-8'>Members of Hero Team</h1>
+            <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-8'>
                 {
                     credits.map(credit => <Credit
                         key={credit._id}
