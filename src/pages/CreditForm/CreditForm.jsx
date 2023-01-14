@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { serverApi } from '../../ServerApi/ServerApi';
 
 const CreditForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [creditInfo, setCreditInfo] = useState({});
 
-    console.log(creditInfo);
 
     // imagebb key
     const imageHostKey = process.env.REACT_APP_Imagebb_key;
@@ -16,6 +15,7 @@ const CreditForm = () => {
         
         const name = data.name;
         const department = data.department;
+        const semester = data.semester;
         const shift = data.shift;
         const session = data.session;
         const title = data.title;
@@ -34,10 +34,23 @@ const CreditForm = () => {
             .then(imageData => {
                 const img = (imageData.data.display_url);
                 const data = {
-                    name, img, department, shift, session, title, description
+                    name, img, department, semester, shift, session, title, description
                 }
-                setCreditInfo(data);
-                toast.success("Credit information saved!")
+                
+
+                //save credit information to the database
+                fetch(`${serverApi}/credits`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    toast.success("Credit information saved!")
+                })
             })
 
     };
@@ -46,25 +59,33 @@ const CreditForm = () => {
             <div className="bg-slate-300 py-8 rounded-lg">
                 <div className=" flex-col">
                     <form onSubmit={handleSubmit(handleSave)} className="card w-full">
+                        <h1 className='text-2xl font-bold text-center'>Add Credit Form</h1>
                         <div className="card-body grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Full name</span>
                                 </label>
-                                <input type="text" {...register("name", { required: "name is required" })} className="bg-gray-100 input input-bordered" />
+                                <input type="text" {...register("name", { required: "name is required" })} placeholder="Enter your full name" className="bg-gray-100 input input-bordered" />
+                                {errors.name && <p role="alert" className='text-red-600 text-center mb-2'>{errors.name?.message}</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Attach Picture</span>
                                 </label>
                                 <input className='' type="file" {...register("image", { required: "Picture is required" })} id="" />
-                                    {errors.image && <p role="alert" className='text-red-600 text-center mb-2'>{errors.image?.message}</p>}
+                                {errors.image && <p role="alert" className='text-red-600 text-center mb-2'>{errors.image?.message}</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Department</span>
                                 </label>
                                 <input type="text" defaultValue="Computer Science" readOnly {...register("department", { required: "Department is required" })} className="bg-gray-100 input input-bordered" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Semester</span>
+                                </label>
+                                <input type="text" defaultValue="8th" readOnly {...register("semester", { required: "Semester is required" })} className="bg-gray-100 input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -93,7 +114,7 @@ const CreditForm = () => {
                                 {errors.description && <p role="alert" className='text-red-600'>{errors.description?.message}</p>}
                             </div>
                             <div className="form-control mt-4">
-                                <button type='submit' className="btn btn-primary">Submit</button>
+                                <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold mt-4">Submit</button>
                             </div>
                         </div>
                     </form>

@@ -3,6 +3,7 @@ import DashboardLayout from '../Layout/DashboardLayout/DashboardLayout';
 import LeavesMain from '../Layout/LeavesMain/LeavesMain';
 import Main from '../Layout/Main';
 import CreditForm from '../pages/CreditForm/CreditForm';
+import CreditDetails from '../pages/Credits/Credit/CreditDetails';
 import Credits from '../pages/Credits/Credits';
 import AddDepartment from '../pages/Dashboard/AddDepartment/AddDepartment';
 import AddLeave from '../pages/Dashboard/AddLeave/AddLeave';
@@ -54,7 +55,12 @@ const router = createBrowserRouter([
             {
                 path: '/creditForm',
                 element: <CreditForm />
-            }
+            },
+            {
+                path: '/credit/:id',
+                element: <CreditDetails />,
+                loader: ({params}) => fetch(`https://teachers-leave-application-server.vercel.app/credit/${params.id}`)
+            },
         ]
 
     },

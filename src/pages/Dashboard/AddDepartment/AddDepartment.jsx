@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { serverApi } from '../../../ServerApi/ServerApi';
 import { toast } from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
 
 const AddDepartment = () => {
     const [dept, setDept] = useState([]);
@@ -12,6 +13,7 @@ const AddDepartment = () => {
             .catch(err => console.error(err))
     }, [addForm])
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const handleToAddDept = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -55,22 +57,23 @@ const AddDepartment = () => {
             {
                 !addForm &&
                 <div className='flex justify-center items-center'>
-                    <h3 onClick={() => setAddform(true)} className='p-5 text-xl font-bold cursor-pointer hover:bg-blue-600 hover:text-white bg-blue-600 text-black inline-block rounded-lg'>Add A Department</h3>
+                    <h3 onClick={() => setAddform(true)} className='btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold mt-4'>Add A Department</h3>
                 </div>
             }
             {
                 addForm &&
                 <div className='flex justify-center items-center'>
                     <div className=" w-full max-w-sm shadow-2xl bg-base-100">
-                        <form onSubmit={handleToAddDept} className="card-body">
+                        <form onSubmit={handleSubmit(handleToAddDept)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Add Department</span>
                                 </label>
-                                <input name='deptName' type="text" placeholder="Please Enter New Department Name" className="input input-bordered" />
+                                <input name='deptName' type="text" {...register("deptName", { required: "Department name is required" })} placeholder="Please Enter New Department Name" className="input input-bordered" />
+                                {errors.deptName && <p role="alert" className='text-red-600'>{errors.deptName?.message}</p>}
                             </div>
                             <div className="form-control mt-6">
-                                <button type='submit' className="btn btn-primary">Add</button>
+                                <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold">Add</button>
                             </div>
                         </form>
                     </div>

@@ -121,13 +121,6 @@ const InfoForm = ({ signUpInfo }) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">ID no</span>
-                                        </label>
-                                        <input type="text" {...register("idNo", { required: "ID is required" })} placeholder="Your roll no" className="bg-gray-100 input input-bordered" />
-                                        {errors.idNo && <p role="alert" className='text-red-600'>{errors.idNo?.message}</p>}
-                                    </div>
-                                    <div className="form-control">
-                                        <label className="label">
                                             <span className="label-text">Department</span>
                                         </label>
                                         <select name='department' {...register("department", { required: "Department is required" })} className="bg-gray-100 select select-bordered w-full">
@@ -250,7 +243,7 @@ const InfoForm = ({ signUpInfo }) => {
                                         {errors.address && <p role="alert" className='text-red-600'>{errors.address?.message}</p>}
                                     </div>
                                     <div className="form-control mt-6">
-                                        <PrimaryButton type='submit' >Submit</PrimaryButton>
+                                        <button className='btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold mt-4'>Submit</button>
                                     </div>
                                 </div>
                             </form>
