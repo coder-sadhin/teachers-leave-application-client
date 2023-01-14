@@ -19,11 +19,9 @@ import Verification from '../pages/SingUpForm/Verification';
 import ViewStatus from '../pages/ViewStatus/ViewStatus';
 import PrivateRoute from './PrivetRoute';
 import History from '../pages/Dashboard/History/History';
-<<<<<<< HEAD
 import Home from '../pages/Home';
-=======
 import { serverApi } from '../ServerApi/ServerApi';
->>>>>>> 5e43c45c8acaefc69be215a3918f05400daebdc6
+
 
 const router = createBrowserRouter([
     {
@@ -65,13 +63,9 @@ const router = createBrowserRouter([
             },
             {
                 path: '/credit/:id',
-<<<<<<< HEAD
-                element: <PrivateRoute><CreditDetails /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://teachers-leave-application-server.vercel.app/credit/${params.id}`)
-=======
                 element: <CreditDetails />,
-                loader: ({params}) => fetch(`${serverApi}/credit/${params.id}`)
->>>>>>> 5e43c45c8acaefc69be215a3918f05400daebdc6
+                loader: ({ params }) => fetch(`${serverApi}/credit/${params.id}`)
+
             },
         ]
 
