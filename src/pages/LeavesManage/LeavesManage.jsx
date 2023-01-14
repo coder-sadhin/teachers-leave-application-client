@@ -32,8 +32,7 @@ const LeavesManage = () => {
                     <div className='ml-20'>
                         <p className='text-justify mb-8'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, explicabo quibusdam voluptatem nihil fugit at eveniet perspiciatis, cum omnis voluptatibus, eos ipsum veritatis dignissimos? Nam possimus incidunt quia rem reprehenderit!</p>
                         <div className='flex justify-between items-center'>
-                            <PrimaryButton>Cancle Leave</PrimaryButton>
-                            <PrimaryButton>Reshedule</PrimaryButton>
+                        <button className='btn btn-outline border-2 border-red-600 text-black hover:bg-red-600 rounded-b-3xl font-bold'>Cancle Leave</button>
                         </div>
                     </div>
                 </div>
