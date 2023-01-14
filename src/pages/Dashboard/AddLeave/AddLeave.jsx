@@ -7,7 +7,7 @@ const AddLeave = () => {
     const [leave, setLeave] = useState([]);
     const [addForm, setAddform] = useState(false);
     useEffect(() => {
-        fetch(`${serverApi}/allLeave`)
+        fetch(`${serverApi}/addLeave`)
             .then(res => res.json())
             .then(data => setLeave(data))
             .catch(err => console.error(err))
