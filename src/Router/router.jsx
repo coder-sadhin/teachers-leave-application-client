@@ -7,7 +7,8 @@ import CreditDetails from '../pages/Credits/Credit/CreditDetails';
 import Credits from '../pages/Credits/Credits';
 import AddDepartment from '../pages/Dashboard/AddDepartment/AddDepartment';
 import AddLeave from '../pages/Dashboard/AddLeave/AddLeave';
-import Dashboard from '../pages/Dashboard/Dashboard';
+import DashBoard from '../pages/Dashboard/Dashboard';
+import Pending from '../pages/Dashboard/Pending/Pending';
 import ErrorPage from '../pages/Error/ErrorPage';
 import InfoForm from '../pages/InfoForm/InfoForm';
 import LeavesForm from '../pages/LeavesForm/LeavesForm';
@@ -17,6 +18,7 @@ import SingUpForm from '../pages/SingUpForm/SignUpForm';
 import Verification from '../pages/SingUpForm/Verification';
 import ViewStatus from '../pages/ViewStatus/ViewStatus';
 import PrivateRoute from './PrivetRoute';
+import History from '../pages/Dashboard/History/History';
 
 const router = createBrowserRouter([
     {
@@ -93,7 +95,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>
+                element: <DashBoard />
             },
             {
                 path: '/dashboard/addDepartment',
@@ -102,6 +104,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addLeave',
                 element: <AddLeave />
+            },
+            {
+                path: '/dashboard/pending',
+                element: <Pending />
+            },
+            {
+                path: '/dashboard/history',
+                element: <History />
             },
         ]
     },
