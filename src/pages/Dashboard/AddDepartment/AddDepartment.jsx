@@ -3,21 +3,35 @@ import { serverApi } from '../../../ServerApi/ServerApi';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import Spinner from '../../../Components/Spinner/Spinner';
+import { useQuery } from '@tanstack/react-query';
+import { async } from '@firebase/util';
 
 const AddDepartment = () => {
-    const [dept, setDept] = useState([]);
     const [addForm, setAddform] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-        fetch(`${serverApi}/allDepartment`)
-            .then(res => res.json())
-            .then(data => {
-                setIsLoading(false);
-                setDept(data);
-            })
-            .catch(err => console.error(err))
-    }, [addForm])
+    // const [isLoading, setIsLoading] = useState(true);
 
+    // get data from database
+    const {data: dept = [], isLoading, refetch } = useQuery({
+        queryKey: ['allDepartment'],
+        queryFn: async () => {
+            const res = await fetch(`${serverApi}/allDepartment`);
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    // useEffect(() => {
+    //     fetch(`${serverApi}/allDepartment`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setIsLoading(false);
+    //             setDept(data);
+    //         })
+    //         .catch(err => console.error(err))
+    // }, [addForm])
+
+
+    // added data to database
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleToAddDept = (event) => {
         const deptName = event.deptName;
@@ -44,6 +58,19 @@ const AddDepartment = () => {
             .catch(err => console.error(err))
     }
 
+    // delete data from database
+    const handleDelete = id => {
+
+        fetch(`${serverApi}/department/${id}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(data => {
+            toast.success('Department successfully deleted!')
+            refetch();
+        })
+    }
+
     if(isLoading){
         return <Spinner />
     }
@@ -55,7 +82,7 @@ const AddDepartment = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
                         dept.map(d => <div className='w-full py-3 px-5 bg-green-300 text-black' key={d._id}>
-                            <h3 className='text-xl font-bold flex justify-between items-center'><span>{d.d_name}</span><span className='text-red-700 cursor-pointer'>X</span></h3>
+                            <h3 className='text-xl font-bold flex justify-between items-center'><span>{d.d_name}</span><span onClick={() => handleDelete(d?._id)} className='text-red-700 cursor-pointer'>X</span></h3>
                         </div>)
                     }
                 </div>
