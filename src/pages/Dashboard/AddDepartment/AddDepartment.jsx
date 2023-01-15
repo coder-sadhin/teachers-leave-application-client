@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { serverApi } from '../../../ServerApi/ServerApi';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import Spinner from '../../../Components/Spinner/Spinner';
 import { useQuery } from '@tanstack/react-query';
-import { async } from '@firebase/util';
 
 const AddDepartment = () => {
     const [addForm, setAddform] = useState(false);
-    // const [isLoading, setIsLoading] = useState(true);
 
     // get data from database
-    const {data: dept = [], isLoading, refetch } = useQuery({
+    const { data: dept = [], isLoading, refetch } = useQuery({
         queryKey: ['allDepartment'],
         queryFn: async () => {
             const res = await fetch(`${serverApi}/allDepartment`);
@@ -19,16 +17,6 @@ const AddDepartment = () => {
             return data;
         }
     })
-
-    // useEffect(() => {
-    //     fetch(`${serverApi}/allDepartment`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setIsLoading(false);
-    //             setDept(data);
-    //         })
-    //         .catch(err => console.error(err))
-    // }, [addForm])
 
 
     // added data to database
@@ -51,6 +39,7 @@ const AddDepartment = () => {
                 if (data.acknowledged === true) {
                     toast.success('Department successfully added');
                     setAddform(false)
+                    refetch();
                 } else {
                     toast.error(data)
                 }
@@ -60,18 +49,21 @@ const AddDepartment = () => {
 
     // delete data from database
     const handleDelete = id => {
-
+        const confirm = window.confirm("Are you Sure to delete this Department?")
+        if (!confirm) {
+            return
+        }
         fetch(`${serverApi}/department/${id}`, {
             method: "DELETE"
         })
-        .then(res => res.json())
-        .then(data => {
-            toast.success('Department successfully deleted!')
-            refetch();
-        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Department successfully deleted!')
+                refetch();
+            })
     }
 
-    if(isLoading){
+    if (isLoading) {
         return <Spinner />
     }
     return (
