@@ -145,7 +145,7 @@ const CreditForm = () => {
                                 {errors.description && <p role="alert" className='text-red-600'>{errors.description?.message}</p>}
                             </div>
                             <div className="form-control">
-                                <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold mt-4">Submit</button>
+                                <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-xl font-bold mt-4">Submit</button>
                             </div>
                         </div>
                     </form>

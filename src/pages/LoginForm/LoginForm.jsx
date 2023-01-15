@@ -51,7 +51,7 @@ const LoginForm = () => {
                                     <input type="password" {...register("password", { required: "Password is required" })} placeholder="password" className="bg-gray-100 input input-bordered" />
                                     {errors.password && <p role="alert" className='text-red-600'>{errors.password?.message}</p>}
                                 </div>
-                                <button className='btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-md font-bold mt-4' type="submit">Login</button>
+                                <button className='btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-xl font-bold mt-4' type="submit">Login</button>
                             </form>
                         </div>
                     </div>
