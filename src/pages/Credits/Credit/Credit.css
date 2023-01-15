@@ -7,8 +7,8 @@
     transform: scale(1.04);
 }
 
-.social-icons{
-    transition: .5s;
+.social-icons a{
+    transition: 1s;
 }
 
 .social-icons a:hover{
