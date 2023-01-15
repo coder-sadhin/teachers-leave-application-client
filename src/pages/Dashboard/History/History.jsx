@@ -35,7 +35,7 @@ const History = () => {
                             <th>Profile</th>
                             <th className='text-center'>Name</th>
                             <th className='text-center'>Title</th>
-                            <th className='text-center'>Date</th>
+                            <th className='text-center'>Start to End Date</th>
                             <th className='text-center'>Total Day(s)</th>
                         </tr>
                         </thead>
