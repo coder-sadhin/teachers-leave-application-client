@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
@@ -11,7 +11,7 @@ const LeavesForm = () => {
 
     const { user, loading } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const [selectLeave, setSelectLeave] = useState({})
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
         queryFn: async () => {
@@ -20,6 +20,9 @@ const LeavesForm = () => {
             return data;
         }
     });
+    useEffect(() => {
+        console.log(selectLeave);
+    }, [selectLeave])
 
     const { data: leaveCategory = [] } = useQuery({
         queryKey: ['leaveCategoris'],
@@ -32,7 +35,6 @@ const LeavesForm = () => {
 
 
 
-    console.log(leaveCategory);
     if (user?.email || user) {
         if (!userInfo || userInfo === "Unauthorized Access") {
             refetch()
@@ -94,6 +96,7 @@ const LeavesForm = () => {
             })
             .catch(err => console.error(err))
     }
+
     return (
         <div className='container mx-auto'>
             <div className="bg-slate-300 py-8 rounded-lg">
@@ -137,10 +140,8 @@ const LeavesForm = () => {
                                 </label>
                                 <select name='leaves' {...register("leaves", { required: "leaves is required" })} className="bg-gray-100 select select-bordered w-full">
                                     {
-                                        leaveCategory?.map(leave => <option key={leave?._id}>{leave?.leaveName}</option>)
+                                        leaveCategory?.map(leave => <option key={leave?._id} onClick={() => setSelectLeave(leave?.leaveName)}>{leave?.leaveName}</option>)
                                     }
-
-
                                 </select>
                                 {errors.leaves && <p role="alert" className='text-red-600'>{errors.leaves?.message}</p>}
                             </div>
