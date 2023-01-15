@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { serverApi } from '../../ServerApi/ServerApi';
 
 const CreditForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const navigate = useNavigate()
 
     // imagebb key
     const imageHostKey = process.env.REACT_APP_Imagebb_key;
@@ -52,8 +53,8 @@ const CreditForm = () => {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
-                    toast.success("Credit information saved!")
+                    toast.success("Credit information saved!");
+                    navigate('/credits');
                 })
             })
 
