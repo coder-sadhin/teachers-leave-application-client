@@ -12,7 +12,7 @@ const Credit = ({ credit }) => {
                 <h2 className="text-xl font-bold uppercase">{name}</h2>
                 <p className='font-semibold uppercase mb-8'>{title}</p>
                 <div className="card-actions justify-center pb-4">
-                    <Link to={`/credit/${_id}`} className="btn btn-outline border-2 hover:bg-white hover:text-black rounded-b-3xl w-full"><span className='font-bold'>See More</span></Link>
+                    <Link to={`/credit/${_id}`} className="btn btn-outline border-2 hover:bg-white hover:text-black rounded-xl w-full"><span className='font-bold'>See More</span></Link>
                 </div>
             </div>
         </div>

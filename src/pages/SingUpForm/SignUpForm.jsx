@@ -75,7 +75,7 @@ const SingUpForm = () => {
                                     {errors.password && <p role="alert" className='text-red-600'>{errors.password?.message}</p>}
                                 </div>
                                 <div className="form-control mt-4">
-                                    <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold mt-4">{loading ? <SmallSpinner /> : "Next"}</button>
+                                    <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-xl font-bold mt-4">{loading ? <SmallSpinner /> : "Next"}</button>
                                 </div>
                             </form>
                             <p className='font-bold mb-4 text-lg text-center'>Already have an account? <Link to='/login' className='link link-hover text-red-600'>Login Now</Link></p>
