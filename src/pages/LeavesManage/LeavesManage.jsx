@@ -21,6 +21,7 @@ const LeavesManage = () => {
             .catch(err => toast.error(err))
     }, [user, user?.email])
 
+    console.log(leaveData);
     if(isLoading){
         return <Spinner />
     }
