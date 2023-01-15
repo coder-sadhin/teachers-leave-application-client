@@ -40,10 +40,10 @@ const Pending = () => {
                         <section className='bg-slate-300 my-5 py-5 md:rounded-lg'>
                             <div className='w-11/12 mx-auto my-4'>
                                 <div className='flex  items-center'>
-                                    <img className='w-12 h-12 rounded-full bg-cyan-500 mr-4' src={leave?.image} alt="" />
-                                    <h1 className='text-[16px] md:text-2xl text-justify font-semibold'>{leave?.name}</h1>
+                                    <img className='w-14 h-14 rounded-full bg-cyan-500 mr-4' src={leave?.image} alt="" />
+                                    <h1 className='text-[18px] md:text-2xl text-justify font-semibold'>{leave?.name}</h1>
                                 </div>
-                                <h1 className='text-lg text-justify font-semibold ml-16 mt-[-10px] mb-4'>{leave?.title}</h1>
+                                <h1 className='text-lg text-justify font-semibold ml-[73px] mt-[-10px] mb-4'>{leave?.title}</h1>
                                 <div className=''>
                                     <div className="overflow-x-auto">
                                         <table className="table w-full">
@@ -57,15 +57,14 @@ const Pending = () => {
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                {
-                                                    leaves.map((leave, index) => <tr key={leave?._id}>
+                                                    <tr>
                                                         <td className='text-center'>{leave?.startDate} <span className='text-red-600 font-semibold'>to</span> {leave?.endDate}</td>
                                                         <td className='text-center'>{leave?.totalDays}</td>
                                                         <td className='text-center'>{leave?.leaves_C}</td>
                                                         <td className='text-center'>{leave?.department}</td>
                                                         <td className='text-center'>{leave?.shift}</td>
-                                                    </tr>)
-                                                }
+                                                    </tr>
+                                              
                                             </tbody>
                                         </table>
                                     </div>
