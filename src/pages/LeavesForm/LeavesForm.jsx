@@ -45,6 +45,7 @@ const LeavesForm = () => {
         const leavesInfo = {
             name,
             email: user.email,
+            image: user.photoURL,
             department,
             shift,
             leaves_C,
