@@ -13,13 +13,13 @@ const CreditDetails = () => {
             <div className="w-11/12 md:w-10/12  mx-auto py-12">
                 <div className=" px-4 pt-3 text-center">
                     <img className='w-11/12 sm:w-[350px] md:w-6/12 lg:w-4/12 h-80 sm:h-[430px] md:h-72 lg:h-96 mx-auto border-8 rounded-2xl border-x-green-600 border-y-orange-600 mb-3 ' src={img} alt="img" />
-                    <h2 className=" text-2xl md:text-2xl font-bold mt-6">{name}</h2>
-                    <p className='text-xl text-gray-800 font-bold'>{title}</p>
+                    <h2 className=" text-2xl md:text-2xl font-bold uppercase mt-6">{name}</h2>
+                    <p className='text-xl text-gray-800 font-bold uppercase'>{title}</p>
                     <p className='text-lg'><strong>Department: {department}</strong></p>
                     <p className='text-lg'><strong>Semester: {semester}</strong></p>
                     <p className='text-lg'><strong>Shift: {shift}</strong></p>
                     <p className='text-lg'><strong>Session: {session}</strong></p>
-                    <div className='flex justify-center mt-3'>
+                    <div className='social-icons flex justify-center mt-3'>
                         <a className='hover:bg-green-400 p-2 rounded-full mr-3' href={`mailto:${email}`} target="_blank" rel="noopener noreferrer"><HiOutlineMail className='text-2xl' /></a>
                         <a className='hover:bg-green-400 p-2 rounded-full mr-3' href={facebook}><FaFacebookF className='text-2xl' /></a>
                         <a className='hover:bg-green-400 p-2 rounded-full mr-3' href={linkedIn}><FaLinkedinIn className='text-2xl' /></a>
