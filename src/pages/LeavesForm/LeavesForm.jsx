@@ -5,10 +5,10 @@ import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
 import { serverApi } from '../../ServerApi/ServerApi';
 import { toast } from 'react-hot-toast';
-import moment from 'moment';
+// import moment from 'moment';
 
 const LeavesForm = () => {
-    
+
     const { user, loading } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -30,7 +30,7 @@ const LeavesForm = () => {
         }
     });
 
-    
+
 
     console.log(leaveCategory);
     if (user?.email || user) {
@@ -50,12 +50,12 @@ const LeavesForm = () => {
         const shift = data.shift;
         const leaves_C = data.leaves;
         const title = data.title;
-        // const startDate = data.startDate;
+        const startDate = data.startDate;
         const endDate = data.endDate;
         const totalDays = data.totalDays;
         const description = data.description;
         const status = "pending";
-        const startDate = moment(data.startDate).format('DD-MM-YYYY');
+        // const startDate = moment(data.startDate).format('DD-MM-YYYY');
         // console.log(startDate, 'Date Format');
 
         const leavesInfo = {
@@ -139,8 +139,8 @@ const LeavesForm = () => {
                                     {
                                         leaveCategory?.map(leave => <option key={leave?._id}>{leave?.leaveName}</option>)
                                     }
-                                    
-                                    
+
+
                                 </select>
                                 {errors.leaves && <p role="alert" className='text-red-600'>{errors.leaves?.message}</p>}
                             </div>
