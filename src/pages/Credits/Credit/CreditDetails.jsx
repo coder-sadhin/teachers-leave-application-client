@@ -27,7 +27,7 @@ const CreditDetails = () => {
                     </div>
                     <p className='text-justify text-lg font-bold my-10'>{description}</p>
                     <div className="card-actions justify-center pb-4">
-                        <Link to="/credits" className="btn btn-outline border-2 hover:bg-white hover:text-black rounded-b-3xl w-1/2"><span className='font-bold'>Go back</span></Link>
+                        <Link to="/credits" className="btn btn-outline border-2 hover:bg-white hover:text-black rounded-b-3xl w-full md:w-1/2"><span className='font-bold'>Go back</span></Link>
                     </div>
                 </div>
             </div>

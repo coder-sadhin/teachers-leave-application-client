@@ -19,7 +19,9 @@ const Pending = () => {
     console.log(leaves);
     if (isLoading) {
         return <Spinner />
-    }
+    };
+
+    console.log(leaves);
 
     return (
         <div className='w-11/12 mx-auto'>
