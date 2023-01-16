@@ -5,6 +5,7 @@ import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
 import { serverApi } from '../../ServerApi/ServerApi';
 import { toast } from 'react-hot-toast';
+// import { format } from 'date-fns'
 // import moment from 'moment';
 
 const LeavesForm = () => {
@@ -13,8 +14,23 @@ const LeavesForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [leaves_C, setLeave_C] = useState('');
     const [totalDay, setTotalDay] = useState('');
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [daysBetween, setDaysBetween] = useState('');
+
+
+
+    console.log(daysBetween);
+    const calculateDays = () => {
+    const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+        setDaysBetween(diffDays);
+    }
+
+
+
     
-    // console.log(leave, totalDay);
+    // console.log(endDate);
 
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
@@ -24,8 +40,7 @@ const LeavesForm = () => {
             return data;
         }
     });
-    // useEffect(() => {
-    // }, [selectLeave])
+   
     
 
     const { data: leaveCategory = [] } = useQuery({
@@ -58,12 +73,17 @@ const LeavesForm = () => {
     const handleOnclick = event => {
         const leave = event.target.value;
         setLeave_C(leave);
+        
     }
 
     // data get to totalDay(s)
     const handleOnBlur = event => {
         const totalDay = event.target.value;
+        const startDate = event.target.value;
+        const endDate = event.target.value;
         setTotalDay(totalDay);
+        setStartDate(startDate);
+        setEndDate(endDate);
     }
 
 
@@ -176,21 +196,22 @@ const LeavesForm = () => {
                                 <label className="label">
                                     <span className="label-text">Start date</span>
                                 </label>
-                                <input type="date" {...register("startDate", { required: "Start date is required" })} placeholder="Your Birthday" className="bg-gray-100 input input-bordered" />
+                                <input type="date" value={startDate.toISOString().slice(0, 10)} onChange={(e) => setStartDate(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
                                 {errors.startDate && <p role="alert" className='text-red-600'>{errors.startDate?.message}</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">End date</span>
                                 </label>
-                                <input type="date" {...register("endDate", { required: "End date is required" })} placeholder="Your Birthday" className="bg-gray-100 input input-bordered" />
+                                <input type="date" value={endDate.toISOString().slice(0, 10)} onChange={(e) => setEndDate(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
                                 {errors.endDate && <p role="alert" className='text-red-600'>{errors.endDate?.message}</p>}
+                                
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">No. of days leaves required</span>
                                 </label>
-                                <input type="number" onBlur={handleOnBlur}  placeholder="Enter no. of leaves" className="bg-gray-100 input input-bordered" />
+                                <input  readOnly defaultValue={daysBetween} className="bg-gray-100 input input-bordered" />
                                 {errors.totalDays && <p role="alert" className='text-red-600'>{errors.totalDays?.message}</p>}
                             </div>
                             <div className="form-control">
@@ -205,6 +226,7 @@ const LeavesForm = () => {
                             </div>
                         </div>
                     </form>
+                    <button className='btn btn-outline' onClick={calculateDays}>Total Day(s)</button>
                 </div>
             </div>
         </div>
