@@ -5,7 +5,7 @@ import useUserType from '../../Hooks/useUserType';
 
 const Navbar = () => {
     const { user, LogOut, setDashboardModalIcon, dashboardModalIcon } = useContext(AuthContext);
-    const [isSuperAdmin, isSubSuperAdmin, isAdmin, isUser, userLoading] = useUserType(user?.email)
+    const [isSuperAdmin, isSubSuperAdmin, isAdmin] = useUserType(user?.email)
     return (
         <div>
             <section className='bg-slate-400'>
