@@ -20,7 +20,7 @@ const History = () => {
         return <Spinner />
     };
 
-    console.log(leaves);
+    // console.log(leaves);
     return (
         <div className='w-11/12 mx-auto'>
             <section className='bg-slate-300 flex justify-center items-center mb-8 md:rounded-md'>
