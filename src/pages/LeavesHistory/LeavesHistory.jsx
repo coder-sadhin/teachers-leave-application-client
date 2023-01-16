@@ -48,7 +48,7 @@ const LeavesHistory = () => {
                                     <td><img className='w-12 h-12 p-2 bg-gray-400 rounded-full mx-auto' src={calenderLogo} alt="" /></td>
                                     <td className='text-center'>{leave?.startDate} <span className='text-red-600 font-semibold'>to</span> {leave?.endDate}</td>
                                     <td className='text-center'>{leave?.leaves_C}</td>
-                                    <td className='text-center'>{leave?.totalDays}</td>
+                                    <td className='text-center'>{leave?.totalDay}</td>
                                     <td className='text-center'>{leave?.status}</td>
                                 </tr>)
                             }
