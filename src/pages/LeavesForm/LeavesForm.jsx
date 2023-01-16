@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
@@ -11,7 +11,11 @@ const LeavesForm = () => {
 
     const { user, loading } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [selectLeave, setSelectLeave] = useState({})
+    const [leaves_C, setLeave_C] = useState('');
+    const [totalDay, setTotalDay] = useState('');
+    
+    // console.log(leave, totalDay);
+
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
         queryFn: async () => {
@@ -20,9 +24,9 @@ const LeavesForm = () => {
             return data;
         }
     });
-    useEffect(() => {
-        console.log(selectLeave);
-    }, [selectLeave])
+    // useEffect(() => {
+    // }, [selectLeave])
+    
 
     const { data: leaveCategory = [] } = useQuery({
         queryKey: ['leaveCategoris'],
@@ -32,6 +36,11 @@ const LeavesForm = () => {
             return data;
         }
     });
+
+    let totalDays = 0;
+    for (let i = 0; i < leaveCategory.length; i++) {
+        totalDays += Number(leaveCategory[i].totalday);
+    }
 
 
 
@@ -45,16 +54,26 @@ const LeavesForm = () => {
         return <Spinner />
     }
 
+    // data get to leaveCategory
+    const handleOnclick = event => {
+        const leave = event.target.value;
+        setLeave_C(leave);
+    }
+
+    // data get to totalDay(s)
+    const handleOnBlur = event => {
+        const totalDay = event.target.value;
+        setTotalDay(totalDay);
+    }
+
 
     const handleSave = data => {
         const department = data.department;
         const name = data.name;
         const shift = data.shift;
-        const leaves_C = data.leaves;
         const title = data.title;
         const startDate = data.startDate;
         const endDate = data.endDate;
-        const totalDays = data.totalDays;
         const description = data.description;
         const status = "pending";
         // const startDate = moment(data.startDate).format('DD-MM-YYYY');
@@ -70,7 +89,7 @@ const LeavesForm = () => {
             title,
             startDate,
             endDate,
-            totalDays,
+            totalDay,
             description,
             status
         }
@@ -85,7 +104,7 @@ const LeavesForm = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data)
+                console.log(data)
                 if (data.acknowledged === true) {
                     toast.success('Leave Application Complete, Please wait for aproved');
 
@@ -97,6 +116,7 @@ const LeavesForm = () => {
             .catch(err => console.error(err))
     }
 
+
     return (
         <div className='container mx-auto'>
             <div className="bg-slate-300 py-8 rounded-lg">
@@ -105,7 +125,7 @@ const LeavesForm = () => {
                         <div className='w-11/12 mx-auto'>
                             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                                 <div className='bg-gray-500 p-3 shadow-2xl rounded-lg text-center'>
-                                    <h1 className='text-white text-2xl'>Total Leaves <br /> <span className='text-3xl font-bold'>12</span></h1>
+                                    <h1 className='text-white text-2xl'>Total Leaves <br /> <span className='text-3xl font-bold'>{totalDays}</span></h1>
                                 </div>
                                 <div className='bg-primary p-3 shadow-2xl rounded-lg text-center'>
                                     <h1 className='text-white text-2xl'>Due Leave(s) <br /> <span className='text-3xl font-bold'>7</span></h1>
@@ -138,9 +158,10 @@ const LeavesForm = () => {
                                 <label className="label">
                                     <span className="label-text">Leaves category</span>
                                 </label>
-                                <select name='leaves' {...register("leaves", { required: "leaves is required" })} className="bg-gray-100 select select-bordered w-full">
+                                <select name='leaves' onClick={handleOnclick} className="bg-gray-100 select select-bordered w-full">
+                                <option> Please select category</option>
                                     {
-                                        leaveCategory?.map(leave => <option key={leave?._id} onClick={() => setSelectLeave(leave?.leaveName)}>{leave?.leaveName}</option>)
+                                        leaveCategory?.map(leave => <option  key={leave?._id}>{leave?.leaveName}</option>)
                                     }
                                 </select>
                                 {errors.leaves && <p role="alert" className='text-red-600'>{errors.leaves?.message}</p>}
@@ -169,7 +190,7 @@ const LeavesForm = () => {
                                 <label className="label">
                                     <span className="label-text">No. of days leaves required</span>
                                 </label>
-                                <input type="number" {...register("totalDays", { required: "Total days is required" })} placeholder="Enter no. of leaves" className="bg-gray-100 input input-bordered" />
+                                <input type="number" onBlur={handleOnBlur}  placeholder="Enter no. of leaves" className="bg-gray-100 input input-bordered" />
                                 {errors.totalDays && <p role="alert" className='text-red-600'>{errors.totalDays?.message}</p>}
                             </div>
                             <div className="form-control">
