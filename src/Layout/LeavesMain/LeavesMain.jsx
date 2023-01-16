@@ -21,7 +21,7 @@ const LeavesMain = () => {
                 <div className='pt-8 nav leaves-menu'>
                     <ul className='flex justify-around'>
                         <li className='hover:text-red-600 click '><NavLink to="/leaves/leaveFrom">Apply for Leave(s)</NavLink></li>
-                        <li className='hover:text-red-600 '><NavLink to="/leaves/leavesManage">Manage Leave(s)</NavLink></li>
+                        <li className='hover:text-red-600 '><NavLink to="/leaves/leavesHistory">Histories</NavLink></li>
                         <li className='hover:text-red-600 '><NavLink to="/leaves/viewStatus">View Status</NavLink></li>
                     </ul>
                 </div>

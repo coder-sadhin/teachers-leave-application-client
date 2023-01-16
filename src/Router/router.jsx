@@ -12,7 +12,6 @@ import Pending from '../pages/Dashboard/Pending/Pending';
 import ErrorPage from '../pages/Error/ErrorPage';
 import InfoForm from '../pages/InfoForm/InfoForm';
 import LeavesForm from '../pages/LeavesForm/LeavesForm';
-import LeavesManage from '../pages/LeavesManage/LeavesManage';
 import LoginForm from '../pages/LoginForm/LoginForm';
 import SingUpForm from '../pages/SingUpForm/SignUpForm';
 import Verification from '../pages/SingUpForm/Verification';
@@ -21,6 +20,7 @@ import PrivateRoute from './PrivetRoute';
 import History from '../pages/Dashboard/History/History';
 import Home from '../pages/Home';
 import { serverApi } from '../ServerApi/ServerApi';
+import LeavesHistory from '../pages/LeavesHistory/LeavesHistory';
 
 
 const router = createBrowserRouter([
@@ -84,8 +84,8 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><LeavesForm /></PrivateRoute>
             },
             {
-                path: '/leaves/leavesManage',
-                element: <LeavesManage />
+                path: '/leaves/leavesHistory',
+                element: <LeavesHistory />
             },
             {
                 path: '/leaves/viewStatus',
