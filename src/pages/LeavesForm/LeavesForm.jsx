@@ -1,10 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
 import { serverApi } from '../../ServerApi/ServerApi';
 import { toast } from 'react-hot-toast';
+import { DateRangePicker } from 'rsuite';
+import DateRangeComp from '../../Components/DateRangeComp';
+
 // import moment from 'moment';
 
 const LeavesForm = () => {
@@ -13,7 +16,7 @@ const LeavesForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [leaves_C, setLeave_C] = useState('');
     const [totalDay, setTotalDay] = useState('');
-    
+
     // console.log(leave, totalDay);
 
     const { data: userInfo = [], isLoading, refetch } = useQuery({
@@ -24,9 +27,24 @@ const LeavesForm = () => {
             return data;
         }
     });
-    // useEffect(() => {
-    // }, [selectLeave])
-    
+
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+
+
+
+    const handleSelect = (ranges) => {
+        console.log(ranges.selection.startDate);
+        console.log(ranges.selection.endDate)
+    }
+
+    const selectionRange = {
+        startDate: startDate,
+        endDate: endDate,
+        key: "selection"
+    }
+
 
     const { data: leaveCategory = [] } = useQuery({
         queryKey: ['leaveCategoris'],
@@ -159,9 +177,9 @@ const LeavesForm = () => {
                                     <span className="label-text">Leaves category</span>
                                 </label>
                                 <select name='leaves' onClick={handleOnclick} className="bg-gray-100 select select-bordered w-full">
-                                <option> Please select category</option>
+                                    <option> Please select category</option>
                                     {
-                                        leaveCategory?.map(leave => <option  key={leave?._id}>{leave?.leaveName}</option>)
+                                        leaveCategory?.map(leave => <option key={leave?._id}>{leave?.leaveName}</option>)
                                     }
                                 </select>
                                 {errors.leaves && <p role="alert" className='text-red-600'>{errors.leaves?.message}</p>}
@@ -178,6 +196,7 @@ const LeavesForm = () => {
                                 </label>
                                 <input type="date" {...register("startDate", { required: "Start date is required" })} placeholder="Your Birthday" className="bg-gray-100 input input-bordered" />
                                 {errors.startDate && <p role="alert" className='text-red-600'>{errors.startDate?.message}</p>}
+
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -190,7 +209,7 @@ const LeavesForm = () => {
                                 <label className="label">
                                     <span className="label-text">No. of days leaves required</span>
                                 </label>
-                                <input type="number" onBlur={handleOnBlur}  placeholder="Enter no. of leaves" className="bg-gray-100 input input-bordered" />
+                                <input type="number" onBlur={handleOnBlur} placeholder="Enter no. of leaves" className="bg-gray-100 input input-bordered" />
                                 {errors.totalDays && <p role="alert" className='text-red-600'>{errors.totalDays?.message}</p>}
                             </div>
                             <div className="form-control">
