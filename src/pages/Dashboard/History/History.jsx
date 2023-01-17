@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import calenderLogo from '../../../assets/calender-logo.png'
 import Spinner from '../../../Components/Spinner/Spinner';
 import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 import { serverApi } from '../../../ServerApi/ServerApi';

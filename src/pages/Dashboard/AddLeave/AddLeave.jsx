@@ -90,8 +90,8 @@ const AddLeave = () => {
                                         <th>{index + 1}</th>
                                         <td>{leave?.leaveName}</td>
                                         <td>{leave?.totalday}</td>
-                                        <td><button className='btn btn-outline border-1 border-green-600 text-black hover:bg-green-600 rounded-b-2xl font-bold btn-sm'>Update</button></td>
-                                        <td><button onClick={() => handleDelete(leave?._id)} className='btn btn-outline border-1 border-red-600 text-black hover:bg-red-600 rounded-b-2xl font-bold btn-sm'>Delete</button></td>
+                                        <td><button className='btn btn-outline border-1 border-green-600 text-black hover:bg-green-600 rounded-xl font-bold btn-sm'>Update</button></td>
+                                        <td><button onClick={() => handleDelete(leave?._id)} className='btn btn-outline border-1 border-red-600 text-black hover:bg-red-600 rounded-xl font-bold btn-sm'>Delete</button></td>
                                     </tr>)
                                 }
                             </tbody>
@@ -102,7 +102,7 @@ const AddLeave = () => {
             {
                 !addForm &&
                 <div className='flex justify-center items-center'>
-                    <h3 onClick={() => setAddform(true)} className='btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold mt-4'>Add A Leave</h3>
+                    <h3 onClick={() => setAddform(true)} className='btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-xl font-bold mt-4'>Add A Leave</h3>
                 </div>
             }
             {
@@ -125,7 +125,7 @@ const AddLeave = () => {
                                 {errors.totalDay && <p role="alert" className='text-red-600'>{errors.totalDay?.message}</p>}
                             </div>
                             <div className="form-control mt-6">
-                                <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-b-3xl font-bold">Add</button>
+                                <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-xl font-bold">Add</button>
                             </div>
                         </form>
                     </div>
