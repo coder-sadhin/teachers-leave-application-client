@@ -1,28 +1,27 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
 import { serverApi } from '../../ServerApi/ServerApi';
 import { toast } from 'react-hot-toast';
-// import { format } from 'date-fns'
-// import moment from 'moment';
 
 const LeavesForm = () => {
 
     const { user, loading } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [leaves_C, setLeave_C] = useState('');
-    const [totalDay, setTotalDay] = useState('');
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    const [s_date, setS_date] = useState(new Date());
+    const [e_date, setE_date] = useState(new Date());
     const [daysBetween, setDaysBetween] = useState('');
 
-
-
-    console.log(daysBetween);
+    const startDate = new Date(s_date).toString().slice(0, 15)
+    const endDate = new Date(s_date).toString().slice(0, 15)
+    
+    // console.log("Start", startDate, "End", endDate)
+   
     const calculateDays = () => {
-    const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+    const timeDiff = Math.abs(e_date.getTime() - s_date.getTime());
     const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
         setDaysBetween(diffDays);
     }
@@ -30,7 +29,7 @@ const LeavesForm = () => {
 
 
     
-    // console.log(endDate);
+    // console.log(e_date);
 
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ['userInfo'],
@@ -76,28 +75,16 @@ const LeavesForm = () => {
         
     }
 
-    // data get to totalDay(s)
-    const handleOnBlur = event => {
-        const totalDay = event.target.value;
-        const startDate = event.target.value;
-        const endDate = event.target.value;
-        setTotalDay(totalDay);
-        setStartDate(startDate);
-        setEndDate(endDate);
-    }
-
 
     const handleSave = data => {
         const department = data.department;
         const name = data.name;
         const shift = data.shift;
         const title = data.title;
-        const startDate = data.startDate;
-        const endDate = data.endDate;
+        const totalDays = daysBetween
         const description = data.description;
         const status = "pending";
-        // const startDate = moment(data.startDate).format('DD-MM-YYYY');
-        // console.log(startDate, 'Date Format');
+        
 
         const leavesInfo = {
             name,
@@ -109,7 +96,7 @@ const LeavesForm = () => {
             title,
             startDate,
             endDate,
-            totalDay,
+            totalDays,
             description,
             status
         }
@@ -148,10 +135,10 @@ const LeavesForm = () => {
                                     <h1 className='text-white text-2xl'>Total Leaves <br /> <span className='text-3xl font-bold'>{totalDays}</span></h1>
                                 </div>
                                 <div className='bg-primary p-3 shadow-2xl rounded-lg text-center'>
-                                    <h1 className='text-white text-2xl'>Due Leave(s) <br /> <span className='text-3xl font-bold'>7</span></h1>
+                                    <h1 className='text-white text-2xl'>Spend Leave(s) <br /> <span className='text-red-600 text-3xl font-bold'>{daysBetween}</span></h1>
                                 </div>
                                 <div className='bg-gray-500 p-3 shadow-2xl rounded-lg text-center'>
-                                    <h1 className='text-white text-2xl'>Spend Leave(s) <br /> <span className='text-3xl font-bold'>5</span></h1>
+                                    <h1 className='text-white text-2xl'>Due Leave(s) <br /> <span className='text-3xl font-bold'>{totalDays - daysBetween}</span></h1>
                                 </div>
                             </div>
                         </div>
@@ -196,20 +183,20 @@ const LeavesForm = () => {
                                 <label className="label">
                                     <span className="label-text">Start date</span>
                                 </label>
-                                <input type="date" value={startDate.toISOString().slice(0, 10)} onChange={(e) => setStartDate(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
-                                {errors.startDate && <p role="alert" className='text-red-600'>{errors.startDate?.message}</p>}
+                                <input type="date" value={s_date.toISOString().slice(0, 10)} onChange={(e) => setS_date(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
+                                {errors.s_date && <p role="alert" className='text-red-600'>{errors.s_date?.message}</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">End date</span>
                                 </label>
-                                <input type="date" value={endDate.toISOString().slice(0, 10)} onChange={(e) => setEndDate(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
-                                {errors.endDate && <p role="alert" className='text-red-600'>{errors.endDate?.message}</p>}
+                                <input type="date" value={e_date.toISOString().slice(0, 10)} onChange={(e) => setE_date(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
+                                {errors.e_date && <p role="alert" className='text-red-600'>{errors.e_date?.message}</p>}
                                 
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">No. of days leaves required</span>
+                                    <span className="label-text">Total leave day(s)</span>
                                 </label>
                                 <input  readOnly defaultValue={daysBetween} className="bg-gray-100 input input-bordered" />
                                 {errors.totalDays && <p role="alert" className='text-red-600'>{errors.totalDays?.message}</p>}
