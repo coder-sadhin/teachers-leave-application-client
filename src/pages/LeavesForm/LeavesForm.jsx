@@ -24,7 +24,7 @@ const LeavesForm = () => {
     if (leaveCategory.length < 1) {
         refetch1()
     }
-    const categoryLeave = leaveCategory?.find(leave => leave.leaveName === leaves_C)
+    const categoryLeave = leaveCategory?.find(leave => leave?.leaveName === leaves_C)
     // console.log(categoryLeave);
 
     let totalDays = categoryLeave?.totalday;

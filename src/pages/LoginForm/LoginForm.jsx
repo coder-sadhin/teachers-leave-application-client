@@ -49,15 +49,24 @@ const LoginForm = () => {
         })
     }
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center py-2 bg-gray-100">
+        <div 
+            className="flex min-h-screen flex-col items-center justify-center py-2 bg-gray-100">
             <div className="flex w-11/12 mx-auto items-center justify-center text-center">
-                <div className='flex flex-col md:flex-row lg:flex-row bg-white rounded-2xl shadow-2xl max-w-4xl'>
+                <div 
+                    className='flex flex-col md:flex-row lg:flex-row bg-white rounded-2xl shadow-2xl max-w-4xl'
+                    data-aos="zoom-out-down"
+                    data-aos-duration="2500"
+                    >
                     <div className='w-full p-5'>
                         <div className='text-left font-bold '>
                             <span className='text-green-500 shadow-xl'>RPI Leave App</span>
                         </div>
                         <div className='pt-10 pb-3'>
-                            <h2 className='text-3xl font-bold text-green-500 mb-2'>Sign in your Account</h2>
+                            <h2 
+                                className='text-3xl font-bold text-green-500 mb-2'
+                                data-aos="flip-left"
+                                data-aos-duration="2000"    
+                                >Sign in your Account</h2>
                             <div className='border-2 w-10 border-green-500 inline-block mb-2'></div>
                             <form onSubmit={handleLogin} className='grid grid-cols-1 py-6 gap-1'>
                                 <div className="form-control">

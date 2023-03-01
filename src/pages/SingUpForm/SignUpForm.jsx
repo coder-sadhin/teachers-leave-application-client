@@ -47,9 +47,19 @@ const SingUpForm = () => {
             {
                 formNum === 0 && <section>
                     <div className='justify-center flex items-center'>
-                        <div className='bg-base-200 p-5 border rounded-xl w-9/12 md:w-1/2 lg:w-5/12 mx-auto'>
-                            <form onSubmit={handleSubmit(handleSignUP)} className='grid grid-cols-1 py-8 gap-1'>
-                                <h1 className='text-4xl text-center font-bold'>Register Now</h1>
+                        <div 
+                            className='bg-base-200 p-5 border rounded-xl w-9/12 md:w-1/2 lg:w-5/12 mx-auto'
+                            data-aos="zoom-out-down"
+                            data-aos-duration="2500"
+                            >
+                            <form onSubmit={handleSubmit(handleSignUP)} 
+                                className='grid grid-cols-1 py-8 gap-1'
+                                >
+                                <h1 
+                                    className='text-4xl text-center font-bold'
+                                    data-aos="flip-left"
+                                    data-aos-duration="2000"
+                                    >Register Now</h1>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Name</span>
