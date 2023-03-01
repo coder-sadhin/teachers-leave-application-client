@@ -6,7 +6,11 @@ const Credit = ({ credit }) => {
     console.log(credit)
     const { _id, img, name, title } = credit;
     return (
-        <div className="w-11/12 md:w-full mx-auto ">
+        <div 
+            className="w-11/12 md:w-full mx-auto "
+            data-aos="zoom-out-right"
+            data-aos-duration="2500"
+            >
             <div className="credit-card bg-gray-100 hover:bg-green-600 hover:text-white px-4 pt-3 text-center">
                 <img className='w-full h-96 md:h-72 rounded-lg mb-3 ' src={img} alt="img" />
                 <h2 className="text-xl font-bold uppercase">{name}</h2>

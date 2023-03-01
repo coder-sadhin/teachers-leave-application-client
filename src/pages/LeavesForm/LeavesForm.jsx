@@ -5,6 +5,7 @@ import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner'
 import { serverApi } from '../../ServerApi/ServerApi';
 import { toast } from 'react-hot-toast';
+import { HiCalculator } from 'react-icons/hi';
 
 
 const LeavesForm = () => {
@@ -104,116 +105,133 @@ const LeavesForm = () => {
         }
         const dataInfo = leavesInfo;
         console.log(dataInfo);
-        fetch(`${serverApi}/applyLeave`, {
-            method: "POST",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(dataInfo)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if (data.acknowledged === true) {
-                    toast.success('Leave Application Complete, Please wait for aproved');
 
-                } else {
-                    // toast.error(data)
-                    toast.error(data)
-                }
-            })
-            .catch(err => console.error(err))
+        // fetch(`${serverApi}/applyLeave`, {
+        //     method: "POST",
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(dataInfo)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         if (data.acknowledged === true) {
+        //             toast.success('Leave Application Complete, Please wait for aproved');
+
+        //         } else {
+        //             // toast.error(data)
+        //             toast.error(data)
+        //         }
+        //     })
+        //     .catch(err => console.error(err))
     }
 
 
     return (
         <div className='container mx-auto'>
-            <div className="bg-slate-300 py-8 rounded-lg">
+            <div className="py-8 rounded-lg">
                 <div className=" flex-col">
                     <form onSubmit={handleSubmit(handleSave)} className="card w-full">
-                        <div className='w-11/12 mx-auto'>
+                        <div className='w-11/12 xl:w-9/12 mx-auto'>
                             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                                 <div className='bg-gray-500 p-3 shadow-2xl rounded-lg text-center'>
+                                    <HiCalculator className='w-8 h-8 mx-auto'></HiCalculator>
                                     <h1 className='text-white text-2xl'>Total Leaves <br /> <span className='text-3xl font-bold'>{totalDays}</span></h1>
                                 </div>
                                 <div className='bg-blue-600 p-3 shadow-2xl rounded-lg text-center'>
+                                    <HiCalculator className='w-8 h-8 mx-auto'></HiCalculator>
                                     <h1 className='text-white text-2xl'>Spend Leave(s) <br /> <span className='text-red-600 text-3xl font-bold'>{daysBetween}</span></h1>
                                 </div>
                                 <div className='bg-gray-500 p-3 shadow-2xl rounded-lg text-center'>
+                                    <HiCalculator className='w-8 h-8 mx-auto'></HiCalculator>
                                     <h1 className='text-white text-2xl'>Due Leave(s) <br /> <span className='text-3xl font-bold'>{(totalDays - daysBetween) || 0}</span></h1>
                                 </div>
                             </div>
                         </div>
-                        <div className="card-body grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Full name</span>
-                                </label>
-                                <input defaultValue={userInfo?.details?.name} readOnly type="text" {...register("name", { required: "name is required" })} className="bg-gray-100 input input-bordered" />
+                        <div className="card-body xl:w-10/12 xl:mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div data-aos="fade-right" data-aos-duration="2500">
+                                <div className="form-control mb-2">
+                                    <label className="mb-1">
+                                        <span className="label-text">Full name</span>
+                                    </label>
+                                    <input defaultValue={userInfo?.details?.name} readOnly type="text" {...register("name", { required: "name is required" })} className="bg-gray-100 input input-bordered" />
+                                </div>
+                                <div className="form-control mb-2">
+                                    <label className="mb-1">
+                                        <span className="label-text">Department</span>
+                                    </label>
+                                    <input defaultValue={userInfo?.department} readOnly type="text" {...register("department", { required: "department is required" })} className="bg-gray-100 input input-bordered" />
+                                </div>
+                                <div className="form-control mb-2">
+                                    <label className="mb-1">
+                                        <span className="label-text">Shift</span>
+                                    </label>
+                                    <input defaultValue={userInfo?.shift} readOnly type="text" {...register("shift", { required: "shift is required" })} className="bg-gray-100 input input-bordered" />
+                                </div>
+                                <div className="form-control mb-2">
+                                    <label className="mb-1">
+                                        <span className="label-text">Title</span>
+                                    </label>
+                                    <input defaultValue={userInfo?.title} readOnly type="text" {...register("title", { required: "title is required" })} className="bg-gray-100 input input-bordered" />
+                                </div>
+                                <div className="form-control mb-2">
+                                    <label className="mb-1">
+                                        <span className="label-text">Email</span>
+                                    </label>
+                                    <input defaultValue={userInfo?.email} readOnly type="text" {...register("email", { required: "email is required" })} className="bg-gray-100 input input-bordered" />
+                                </div>
+                                <div className="form-control mt-4 mb-2 hidden xl:block w-full">
+                                    <button type='submit' className="w-full btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-xl font-bold mt-4">Submit</button>
+                                </div>
                             </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Department</span>
-                                </label>
-                                <input defaultValue={userInfo?.department} readOnly type="text" {...register("department", { required: "department is required" })} className="bg-gray-100 input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Shift</span>
-                                </label>
-                                <input defaultValue={userInfo?.shift} readOnly type="text" {...register("shift", { required: "shift is required" })} className="bg-gray-100 input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Leaves category</span>
-                                </label>
-                                <select name='leaves' onClick={handleOnclick} className="bg-gray-100 select select-bordered w-full">
-                                    <option selected disabled value=""> Please select category</option>
-                                    {
-                                        leaveCategory?.map(leave => <option key={leave?._id}>{leave?.leaveName}</option>)
-                                    }
-                                </select>
-                                {errors.leaves && <p role="alert" className='text-red-600'>{errors.leaves?.message}</p>}
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Title</span>
-                                </label>
-                                <input defaultValue={userInfo?.title} readOnly type="text" {...register("title", { required: "title is required" })} className="bg-gray-100 input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Start date</span>
-                                </label>
-                                <input type="date" value={s_date.toISOString().slice(0, 10)} onChange={(e) => setS_date(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
-                                {errors.s_date && <p role="alert" className='text-red-600'>{errors.s_date?.message}</p>}
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">End date</span>
-                                </label>
-                                <input type="date" value={e_date.toISOString().slice(0, 10)} onChange={(e) => setE_date(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
-                                {errors.e_date && <p role="alert" className='text-red-600'>{errors.e_date?.message}</p>}
+                            <div data-aos="fade-left" data-aos-duration="2500">
+                                <div className="form-control mb-2">
+                                    <label className="mb-1">
+                                        <span className="label-text">Leaves category</span>
+                                    </label>
+                                    <select name='leaves' onClick={handleOnclick} className="bg-gray-100 select select-bordered w-full">
+                                        <option selected disabled value=""> Please select category</option>
+                                        {
+                                            leaveCategory?.map(leave => <option key={leave?._id}>{leave?.leaveName}</option>)
+                                        }
+                                    </select>
+                                    {errors.leaves && <p role="alert" className='text-red-600'>{errors.leaves?.message}</p>}
+                                </div>
+                                <div className="form-control mt-[-20px] mb-2 md:mt-0">
+                                    <label className="mb-1">
+                                        <span className="label-text">Start date</span>
+                                    </label>
+                                    <input type="date" value={s_date.toISOString().slice(0, 10)} onChange={(e) => setS_date(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
+                                    {errors.s_date && <p role="alert" className='text-red-600'>{errors.s_date?.message}</p>}
+                                </div>
+                                <div className="form-control mb-2">
+                                    <label className="mb-1">
+                                        <span className="label-text">End date</span>
+                                    </label>
+                                    <input type="date" value={e_date.toISOString().slice(0, 10)} onChange={(e) => setE_date(new Date(e.target.value))} className="bg-gray-100 input input-bordered" />
+                                    {errors.e_date && <p role="alert" className='text-red-600'>{errors.e_date?.message}</p>}
 
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Total leave day(s) <span className='text-red-500 ml-2 mt-[-5px]'>*Click me</span></span>
-                                </label>
-                                {/* <input type="number" onBlur={handleOnBlur} placeholder="Enter no. of leaves" className="bg-gray-100 input input-bordered" /> */}
-                                <input readOnly value={daysBetween} onClick={calDates} placeholder="Click here to calculate dates" className="bg-gray-100 input input-bordered" />
+                                </div>
+                                <div className="form-control mb-2">
+                                    <label className="mb-1">
+                                        <span className="label-text">Total leave day(s) <span className='text-red-500 ml-2 mt-[-5px]'>*Click me</span></span>
+                                    </label>
+                                    {/* <input type="number" onBlur={handleOnBlur} placeholder="Enter no. of leaves" className="bg-gray-100 input input-bordered" /> */}
+                                    <input readOnly value={daysBetween} onClick={calDates} placeholder="Click here to calculate dates" className="bg-gray-100 input input-bordered" />
 
-                                {errors.totalDays && <p role="alert" className='text-red-500'>{errors.totalDays?.message}</p>}
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Reason for Leave</span>
-                                </label>
-                                <textarea {...register("description", { required: "Reason for leave is required" })} className="textarea bg-gray-100 input-bordered" placeholder="Description"></textarea>
-                                {errors.description && <p role="alert" className='text-red-600'>{errors.description?.message}</p>}
-                            </div>
-                            <div className="form-control mt-4">
-                                <button type='submit' className="btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-xl font-bold mt-4">Submit</button>
+                                    {errors.totalDays && <p role="alert" className='text-red-500'>{errors.totalDays?.message}</p>}
+                                </div>
+                                <div className="form-control mb-2">
+                                    <label className="mb-1">
+                                        <span className="label-text">Reason for Leave</span>
+                                    </label>
+                                    <textarea rows={4} {...register("description", { required: "Reason for leave is required" })} className="textarea bg-gray-100 input-bordered" placeholder="Description"></textarea>
+                                    {errors.description && <p role="alert" className='text-red-600'>{errors.description?.message}</p>}
+                                </div>
+                                <div className="form-control mt-4 mb-2  xl:hidden w-full">
+                                    <button type='submit' className="w-full btn btn-outline border-2 border-green-600 text-black hover:bg-green-600 rounded-xl font-bold mt-4">Submit</button>
+                                </div>
                             </div>
                         </div>
                     </form>

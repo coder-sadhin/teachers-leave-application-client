@@ -57,10 +57,10 @@ const router = createBrowserRouter([
                 path: '/credits',
                 element: <Credits />
             },
-            {
-                path: '/creditForm',
-                element: <CreditForm />
-            },
+            // {
+            //     path: '/creditForm',
+            //     element: <CreditForm />
+            // },
             {
                 path: '/credit/:id',
                 element: <CreditDetails />,
