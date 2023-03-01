@@ -44,7 +44,7 @@ const History = () => {
                                     <td><img className='w-12 h-12 rounded-full' src={leave?.image} alt="" /></td>
                                     <td className='text-center'>{leave?.name}</td>
                                     <td className='text-center'>{leave?.title}</td>
-                                    <td className='text-center'>{leave?.startDate} <span className='text-red-600 font-semibold'>to</span> {leave?.endDate}</td>
+                                    <td className='text-center'>{leave?.s_date} <span className='text-red-600 font-semibold'>to</span> {leave?.e_date}</td>
                                     <td className='text-center'>{leave?.totalDays}</td>
                                 </tr>)
                             }
